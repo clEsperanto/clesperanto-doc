@@ -10,8 +10,15 @@ Welcome to clEsperanto's documentation!
    :maxdepth: 1
    :caption: Introduction:
 
-   docs/introduction/intro
+   docs/introduction/1_intro
+   docs/introduction/2_gpus
+   docs/introduction/3_memory
 
+.. toctree::
+   :maxdepth: 1
+   :caption: pyclesperanto:
+
+   docs/pyclesperanto/1_intro
 
 
 Indices and tables

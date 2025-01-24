@@ -1,6 +1,7 @@
 # folders
 .mypy_cache
 _build/**
+_submodules/**
 
 # pixi environments
 .pixi

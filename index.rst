@@ -19,6 +19,7 @@ Welcome to clEsperanto's documentation!
    :caption: pyclesperanto:
 
    docs/pyclesperanto/1_intro
+   docs/pyclesperanto/3_api
 
 
 Indices and tables

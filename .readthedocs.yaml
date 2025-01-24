@@ -21,4 +21,7 @@ python:
    install:
    - requirements: ./requirements.txt
         
-
+submodules:
+  include:
+    - path: _submodules/pyclesperanto
+      url: https://github.com/clEsperanto/pyclesperanto.git

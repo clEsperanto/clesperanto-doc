@@ -8,7 +8,6 @@ import re
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path('.', '_submodules/pyclesperanto').resolve()))
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
@@ -23,6 +22,7 @@ release = '0.16.0'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
+    'breathe',
     'sphinx_rtd_theme',
     'sphinx.ext.autodoc',
 ]
@@ -32,8 +32,24 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', '.pixi', '_submodules']
 
 
 # -- pyclesperanto auto-documentation ----------------------------------------
+sys.path.insert(0, str(Path('.', '_submodules/pyclesperanto').resolve()))
 autodoc_mock_imports = ["pyclesperanto._pyclesperanto", "toolz", "matplotlib", "numpy"]
 
+
+# -- CLIc auto-documentation -------------------------------------------------
+breathe_projects = {'CLIc': './_submodules/clic/docs/build/doxygen/xml'}
+breathe_default_project = 'CLIc'
+cpp_index_common_prefix = [
+    'cle::',
+    'cle::tier1::',
+    'cle::tier2::',
+    'cle::tier3::',
+    'cle::tier4::',
+    'cle::tier5::',
+    'cle::tier6::',
+    'cle::tier7::',
+    'cle::tier8::',
+    ]
 
 
 # -- Options for HTML output -------------------------------------------------

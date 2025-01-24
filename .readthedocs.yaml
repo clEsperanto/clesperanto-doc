@@ -8,10 +8,12 @@ version: 2
 build:
   os: ubuntu-24.04
   tools:
-    python: "3.13"
+    python: "mambaforge-latest"
   jobs:
     pre_install:
-      - git clone https://github.com/clEsperanto/pyclesperanto.git _submodules/pyclesperanto
+      - git clone --branch master https://github.com/clEsperanto/CLIc.git _submodules/clic
+      - git clone --branch main https://github.com/clEsperanto/pyclesperanto.git _submodules/pyclesperanto
+      # - git clone --branch main https://github.com/clEsperanto/clesperantoJ.git _submodules/clesperantoj
 
 # Build documentation in the "docs/" directory with Sphinx
 sphinx:
@@ -20,8 +22,11 @@ sphinx:
 # Optionally, but recommended,
 # declare the Python requirements required to build your documentation
 # See https://docs.readthedocs.io/en/stable/guides/reproducible-builds.html
-python:
-   install:
-   - requirements: ./requirements.txt
+# python:
+#    install:
+#    - requirements: ./requirements.txt
+
+conda:
+  environment: ./environment.yml   
 
         

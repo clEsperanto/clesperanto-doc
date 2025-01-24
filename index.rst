@@ -16,10 +16,19 @@ Welcome to clEsperanto's documentation!
 
 .. toctree::
    :maxdepth: 1
+   :caption: CLIc:
+
+   docs/clic/1_intro
+   docs/clic/3_api
+
+.. toctree::
+   :maxdepth: 1
    :caption: pyclesperanto:
 
    docs/pyclesperanto/1_intro
    docs/pyclesperanto/3_api
+
+
 
 
 Indices and tables

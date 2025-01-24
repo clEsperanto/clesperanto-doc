@@ -14,6 +14,15 @@ Welcome to clEsperanto's documentation!
    docs/introduction/2_gpus
    docs/introduction/3_memory
 
+
+
+.. toctree::
+   :maxdepth: 1
+   :caption: pyclesperanto:
+
+   docs/pyclesperanto/1_intro
+   docs/pyclesperanto/3_api
+
 .. toctree::
    :maxdepth: 1
    :caption: CLIc:
@@ -23,17 +32,16 @@ Welcome to clEsperanto's documentation!
 
 .. toctree::
    :maxdepth: 1
-   :caption: pyclesperanto:
+   :caption: clesperantoJ:
 
-   docs/pyclesperanto/1_intro
-   docs/pyclesperanto/3_api
-
-
+   docs/clesperantoj/1_intro
+   docs/clesperantoj/3_api
 
 
-Indices and tables
-==================
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+.. Indices and tables
+.. ==================
+
+.. * :ref:`genindex`
+.. * :ref:`modindex`
+.. * :ref:`search`

@@ -11,9 +11,7 @@ build:
     python: "3.13"
   jobs:
     pre-install:
-      - git clone https://github.com/clEsperanto/pyclesperanto.git /_submodules/pyclesperanto
-      - git clone https://github.com/clEsperanto/clesperantoJ_prototype.git /_submodules/clesperantoJ
-      - git clone https://github.com/clEsperanto/CLIc.git /_submodules/clic
+      - git clone https://github.com/clEsperanto/pyclesperanto.git _submodules/pyclesperanto
 
 # Build documentation in the "docs/" directory with Sphinx
 sphinx:

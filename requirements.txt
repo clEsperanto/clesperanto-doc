@@ -1,4 +1,0 @@
-sphinx-rtd-theme==3.0.1
-breathe==4.35.0
-cmake==3.31.4
-doxygen==1.12.0

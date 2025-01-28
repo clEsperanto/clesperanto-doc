@@ -7,13 +7,19 @@ platforms = ["linux-64", "osx-64", "win-64", "osx-arm64"]
 version = "0.1.0"
 
 [tasks]
-clean = "make clean"
-build = { cmd = "make html", depends-on = ["clean"] }
+clone = { cmd = "git clone -b master https://github.com/clEsperanto/clic.git ./_submodules/clic && git clone -b main https://github.com/clEsperanto/pyclesperanto ./_submodules/pyclesperanto &&  git clone -b main https://github.com/clEsperanto/clesperantoj_prototype ./_submodules/clesperantoj" } 
+clean = { cmd = "rm -rf ./_submodules/* && make clean" }
+doxygen = { cmd= "cmake -S ./_submodules/clic/docs -B ./_submodules/clic/docs/build && cmake --build ./_submodules/clic/docs/build --target doxygen" }
+build = { cmd = "make html", depends-on = ["clean", "clone", "doxygen"] }
+export = { cmd = "pixi project export conda-environment -p linux-64 environment.yml" }
 
 [dependencies]
 sphinx = ">=8.1.3,<9"
-mkdocs = ">=1.6.1,<2"
 sphinx-rtd-theme = ">=3.0.1,<4"
 breathe = ">=4.35.0,<5"
 cmake = ">=3.31.4,<4"
 doxygen = ">=1.12.0,<2"
+sphinx-copybutton = ">=0.5.2,<0.6"
+furo = ">=2024.8.6,<2025"
+sphinx-inline-tabs = ">=2023.4.21,<2024"
+sphinxext-opengraph = ">=0.9.1,<0.10"

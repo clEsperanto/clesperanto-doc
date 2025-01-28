@@ -8,6 +8,11 @@ import re
 import sys
 from pathlib import Path
 
+from sphinx.locale import _
+
+def setup(app):
+    app.add_css_file('custom.css')
+
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
@@ -22,14 +27,20 @@ release = '0.16.0'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
-    'breathe',
     'sphinx_rtd_theme',
     'sphinx.ext.autodoc',
+    'sphinx.ext.todo',
+    'sphinx.ext.intersphinx',
+    'sphinx.ext.extlinks',
+    'sphinx.ext.mathjax',
+    'sphinx_copybutton',
+    'sphinxext.opengraph',
+    'sphinx_inline_tabs',
+    'breathe',
 ]
 
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', '.pixi', '_submodules']
-
 
 # -- pyclesperanto auto-documentation ----------------------------------------
 sys.path.insert(0, str(Path('.', '_submodules/pyclesperanto').resolve()))
@@ -39,6 +50,7 @@ autodoc_mock_imports = ["pyclesperanto._pyclesperanto", "toolz", "matplotlib", "
 # -- CLIc auto-documentation -------------------------------------------------
 breathe_projects = {'CLIc': './_submodules/clic/docs/build/doxygen/xml'}
 breathe_default_project = 'CLIc'
+breathe_domain_by_extension = {'h': 'cpp', 'hpp': 'cpp'}
 cpp_index_common_prefix = [
     'cle::',
     'cle::tier1::',
@@ -55,14 +67,21 @@ cpp_index_common_prefix = [
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = 'sphinx_rtd_theme'
-# html_theme_options = {
-#     "logo_only": False,
-#     "title_only": False,
-#     "navigation_depth": 5,
-#     "collapse_navigation": False,
-#     "sticky_navigation": True,
-#     "version_selector": True,
-# }
+html_theme = 'furo' #sphinx_rtd_theme
+html_title = "clEsperanto"
+pygments_style = "sphinx"
+pygments_dark_style = "monokai"
 
 html_static_path = ['_static']
+
+html_theme_options = {
+    "light_logo": "logo_w.svg",
+    "dark_logo": "logo_d.svg",
+    # "logo_only": False,
+    # "title_only": False,
+    # "navigation_depth": 5,
+    # "collapse_navigation": False,
+    # "sticky_navigation": True,
+    # "version_selector": True,
+}
+

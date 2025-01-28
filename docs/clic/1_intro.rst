@@ -1,4 +1,5 @@
 Introduction
 ============
 
-this is an Introduction for CLIc
+.. todo::
+    - copy from clic

@@ -1,0 +1,21 @@
+.toctree-columns {
+    display: flex;
+    justify-content: space-between;
+}
+
+.toctree-columns > .toctree-wrapper {
+    flex: 1;
+    margin: 0 10px;
+}
+
+.red-caption {
+    color: #ED1C24;
+}
+
+.green-caption {
+    color: #00A651;
+}
+
+.blue-caption {
+    color: #00AEEF;
+}

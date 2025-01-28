@@ -1,4 +1,6 @@
 Introduction
 ============
 
-this is an Introduction for clesperantoJ
+.. todo::
+    - to be made
+    - parse javadoc with sphinx?

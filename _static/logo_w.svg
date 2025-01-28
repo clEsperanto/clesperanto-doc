@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 216.04 105.5">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        font-family: CourierNewPSMT, 'Courier New';
+        font-size: 72px;
+      }
+
+      .cls-3 {
+        fill: #00a651;
+      }
+
+      .cls-4 {
+        fill: #231f20;
+      }
+
+      .cls-5 {
+        fill: #ed1c24;
+      }
+
+      .cls-6 {
+        fill: #00aeef;
+      }
+
+      .cls-7 {
+        clip-path: url(#clippath);
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-1" width="216.04" height="105.5"/>
+    </clipPath>
+  </defs>
+  <!-- Generator: Adobe Illustrator 28.7.1, SVG Export Plug-In . SVG Version: 1.2.0 Build 142)  -->
+  <g>
+    <g id="Layer_1">
+      <g class="cls-7">
+        <text class="cls-2" transform="translate(0 56.57)"><tspan class="cls-5" x="0" y="0">c</tspan><tspan class="cls-3" x="43.21" y="0">l</tspan><tspan class="cls-6" x="86.41" y="0">e</tspan><tspan class="cls-4" x="129.62" y="0">._</tspan></text>
+      </g>
+    </g>
+  </g>
+</svg>

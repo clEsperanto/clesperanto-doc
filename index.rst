@@ -12,30 +12,39 @@ Welcome to clEsperanto's documentation!
 
    docs/introduction/1_intro
    docs/introduction/2_gpus
-   docs/introduction/3_memory
+
+________________
 
 
+.. container:: toctree-columns
 
-.. toctree::
-   :maxdepth: 1
-   :caption: pyclesperanto:
+   .. toctree::
+      :maxdepth: 1
+      :caption: clesperantoJ:
+      :class: red-caption
 
-   docs/pyclesperanto/1_intro
-   docs/pyclesperanto/3_api
+      docs/clesperantoj/1_intro
+      docs/clesperantoj/3_api
 
-.. toctree::
-   :maxdepth: 1
-   :caption: CLIc:
+   .. toctree::
+      :maxdepth: 1
+      :caption: pyclesperanto:
+      :class: green-caption
 
-   docs/clic/1_intro
-   docs/clic/3_api
+      docs/pyclesperanto/1_intro
+      docs/pyclesperanto/2_usage
+      docs/pyclesperanto/3_tutorials
+      docs/pyclesperanto/4_development
+      docs/pyclesperanto/5_faq
+      docs/pyclesperanto/6_api
 
-.. toctree::
-   :maxdepth: 1
-   :caption: clesperantoJ:
+   .. toctree::
+      :maxdepth: 1
+      :caption: CLIc:
+      :class: blue-caption
 
-   docs/clesperantoj/1_intro
-   docs/clesperantoj/3_api
+      docs/clic/1_intro
+      docs/clic/3_api
 
 
 

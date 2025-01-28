@@ -1,8 +1,8 @@
-pyclesperanto API
-=================
+API documentation
+#################
 
 Core functions
---------------
+==============
 
 Collection of functions to explore and select system devices (e.g. GPUs) and initialize a device to work with.
 
@@ -11,7 +11,7 @@ Collection of functions to explore and select system devices (e.g. GPUs) and ini
     :undoc-members:
 
 Memory operations
------------------
+=================
 
 Collection of functions to manage memory on the device, e.g. to allocate and free memory. And to send or retrieve data from the device.
 
@@ -20,7 +20,7 @@ Collection of functions to manage memory on the device, e.g. to allocate and fre
     :undoc-members:
 
 Array class
------------
+===========
 
 The main data structure in pyclesperanto is the `Array` class which behave similar to numpy arrays, but point to a memory location on the device.
 Here is a collection of class functions, operators, and methods to work with `Array` objects. Mainly to create, manipulate, and transfer them, as well
@@ -35,7 +35,7 @@ as to apply arythmetic and logical operations on them.
     :undoc-members:
 
 Functionalities
----------------
+===============
 
 Collection of operations aiming to help in displaying and analyzing results, e.g. to visualize images.
 
@@ -44,7 +44,7 @@ Collection of operations aiming to help in displaying and analyzing results, e.g
     :undoc-members:
 
 Filters
--------
+=======
 
 Complete list of all available filters in pyclesperanto.
 

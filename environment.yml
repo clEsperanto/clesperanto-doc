@@ -12,3 +12,6 @@ dependencies:
 - furo >=2024.8.6,<2025
 - sphinx-inline-tabs >=2023.4.21,<2024
 - sphinxext-opengraph >=0.9.1,<0.10
+- pip
+- pip:
+  - sphinxemoji~=0.3.1

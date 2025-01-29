@@ -3,15 +3,15 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to clEsperanto's documentation!
-=======================================
+Welcome to clEsperanto!
+=======================
+
+The GPU-accelerated Image Processing library for all!
 
 .. toctree::
    :maxdepth: 1
-   :caption: Introduction:
 
-   docs/introduction/1_intro
-   docs/introduction/2_gpus
+   docs/clesperanto/index
 
 ________________
 
@@ -19,33 +19,26 @@ ________________
 .. container:: toctree-columns
 
    .. toctree::
-      :maxdepth: 1
-      :caption: clesperantoJ:
+      :maxdepth: 2
       :class: red-caption
 
-      docs/clesperantoj/1_intro
-      docs/clesperantoj/3_api
+      docs/clesperantoj/index
 
    .. toctree::
-      :maxdepth: 1
-      :caption: pyclesperanto:
+      :maxdepth: 2
       :class: green-caption
 
-      docs/pyclesperanto/1_intro
-      docs/pyclesperanto/2_usage
-      docs/pyclesperanto/3_tutorials
-      docs/pyclesperanto/4_development
-      docs/pyclesperanto/5_faq
-      docs/pyclesperanto/6_api
+      docs/pyclesperanto/index
 
    .. toctree::
-      :maxdepth: 1
-      :caption: CLIc:
+      :maxdepth: 2
       :class: blue-caption
 
-      docs/clic/1_intro
-      docs/clic/3_api
+      docs/clic/index
 
+________________
+
+.. todolist::
 
 
 .. Indices and tables

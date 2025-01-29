@@ -6,30 +6,50 @@ It aims in removing language barriers in the scientific image analysis community
 
 The project is organised in a set of core-reposiroty API dedicated each dedicated to a programing language, and a set of plugin or assistant targeting the main BioImage Analysis frameworks (Fiji, Napari, etc.).
 
-The core-repository API is composed of the following repositories:
+The core-repository APIs are composed of the following repositories:
 
-.. list-table::
-   :header-rows: 1
+.. .. list-table::
+..    :header-rows: 1
+..    :widths: 50 50 100
 
-   * - Repository
-     - Descriptions
-   * - `CLIc <https://github.com/clEsperanto/CLIc>`_
-     - Project Backend library and C++ API
-   * - `pyclesperanto <https://github.com/clEsperanto/pyclesperanto>`_
-     - Python API package
-   * - `clesperantoJ <https://github.com/clEsperanto/clesperantoj_prototype>`_
-     - Java API library
+..    * - language
+..      - Repository
+..      - Descriptions
+..    * - |:rocket:|
+..      - `CLIc <https://github.com/clEsperanto/CLIc>`_
+..      - C++ API & project backend
+..    * - |:snake:|
+..      - `pyclesperanto <https://github.com/clEsperanto/pyclesperanto>`_
+..      - Python API
+..    * - |:coffee:|
+..      - `clesperantoJ <https://github.com/clEsperanto/clesperantoj_prototype>`_
+..      - Java API
 
+- |:rocket:| : `CLIc <https://github.com/clEsperanto/CLIc>`_ C++ API & project backend
+- |:snake:| : `pyclesperanto <https://github.com/clEsperanto/pyclesperanto>`_ Python API
+- |:coffee:| : `clesperantoJ <https://github.com/clEsperanto/clesperantoj_prototype>`_ Java API
 
-.. todo::
-    - elaborate on the project structure and library dependencies and interactions
-    - add why use clesperanto
-    - add a diagram of the project structure
+and a set of satelite repositories which embeded the core API into the main BioImage Analysis frameworks:
 
+.. .. list-table::
+..    :header-rows: 1
+..    :widths: 50 50 100
 
+..    * - language
+..      - Repository
+..      - Descriptions
+..    * - |:coffee:|
+..      - `CLIJ3 <https://github.com/clEsperanto/clij3>`_
+..      - Fiji plugin
+..    * - |:snake:|
+..      - `napari-assistant <https://github.com/clEsperanto/napari_pyclesperanto_assistant>`_
+..      - Napari plugin
+
+- |:snake:| : `napari-assistant <https://github.com/clEsperanto/napari_pyclesperanto_assistant>`_ Napari plugin
+- |:coffee:| : `CLIJ3 <https://github.com/clEsperanto/clij3>`_ Fiji plugin
 
 How do we work together
-=======================
+-----------------------
 
 clEsperanto is developed as a community effort in the open because we believe in the open source community.
 Contributions like feedback, suggestions, code and testing are very welcome.
@@ -40,7 +60,7 @@ The clesperanto project is maintained and lead as a `benevolent dictatorship <ht
 Contribution are very welcome, and do not hesitate to get in touch with us so that we can help you get started, we are happy to help!
 
 Acknowledgements
-================
+----------------
 
 We acknowledge support by the Deutsche Forschungsgemeinschaft under Germany's Excellence Strategy (EXC2068) Cluster of Excellence Physics of Life of TU Dresden.
 This project has been made possible in part by grant number 2021-237734 (`GPU-accelerating Fiji and friends using distributed CLIJ, NEUBIAS-style, EOSS4 <https://chanzuckerberg.com/eoss/proposals/gpu-accelerating-fiji-and-friends-using-distributed-clij-neubias-style/>`_) from the Chan Zuckerberg Initiative DAF, an advised fund of the Silicon Valley Community Foundation.

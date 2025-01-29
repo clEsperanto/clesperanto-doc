@@ -33,14 +33,19 @@ extensions = [
     'sphinx.ext.intersphinx',
     'sphinx.ext.extlinks',
     'sphinx.ext.mathjax',
+    'sphinx.ext.viewcode',
+    'sphinx.ext.napoleon',
     'sphinx_copybutton',
     'sphinxext.opengraph',
     'sphinx_inline_tabs',
     'breathe',
+    'sphinxemoji.sphinxemoji',
 ]
 
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', '.pixi', '_submodules']
+
+todo_include_todos = True
 
 # -- pyclesperanto auto-documentation ----------------------------------------
 sys.path.insert(0, str(Path('.', '_submodules/pyclesperanto').resolve()))
@@ -77,11 +82,11 @@ html_static_path = ['_static']
 html_theme_options = {
     "light_logo": "logo_w.svg",
     "dark_logo": "logo_d.svg",
-    # "logo_only": False,
-    # "title_only": False,
+    "logo_only": True,
+    "title_only": False,
+    "sticky_navigation": True,
     # "navigation_depth": 5,
     # "collapse_navigation": False,
-    # "sticky_navigation": True,
     # "version_selector": True,
 }
 

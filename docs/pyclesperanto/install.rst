@@ -1,11 +1,3 @@
-Introduction
-############
-
-
-.. todo::
-    - mini presentation of the python package
-
-
 Installation
 ============
 
@@ -79,8 +71,4 @@ Clone the repository using ``git`` and install it with ``pip``. The installation
     You can add the flag ``-v`` to enable verbose output of the build process. This is particularly useful for debugging and provid building logs when reporting issues.
 
 
-How to cite
-===========
-
-ToDo
 

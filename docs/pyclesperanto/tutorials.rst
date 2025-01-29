@@ -1,14 +1,8 @@
 Tutorials & Ressources
-######################
-
-
-.. todo::
-    - lists the notebooks available
-    - lists the videos and courses available
-    - lists other ressources available if any
+======================
 
 Demos
-=====
+-----
 
 .. list-table::
    :header-rows: 0

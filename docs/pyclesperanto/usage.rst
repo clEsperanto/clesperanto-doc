@@ -1,5 +1,5 @@
 Usage
-#####
+=====
 
 pyClesperanto is a GPU-accelerated image processing library for Python. To get started, import the library:
 
@@ -40,7 +40,7 @@ You can check which device you are currently working on with the `get_device()` 
 
 
 Memory transfer
-===============
+---------------
 
 GPU devices have their own memory, which is separate from the computer's memory. Therefore, you need to transfer your data to the device memory to process it and back to the computer memory to read the results.
 This is commonly known as `copy from host to device` and `copy from device to host`. In pyclesperanto, we use the functions `push`, `pull`, and `create` to manage memory transfer:
@@ -52,7 +52,7 @@ This is commonly known as `copy from host to device` and `copy from device to ho
 These copy operations are costly in terms of time as they scale with the data size. Therefore, it is good practice to avoid them as much as possible once you are optimizing your code.
 
 Create
-------
+~~~~~~
 
 As there is no data transfer, we only need to specify the size of the image we want to create. The image will be created on the GPU and will be empty.
 The size of the image is specified as a tuple of integers following the numpy convention ``zyx``.
@@ -78,7 +78,7 @@ It is also possible to use another image as a template to create the new image. 
 
 
 Push
-----
+~~~~
 
 The ``push`` function will create a memory space on the GPU like ``create`` and then transfer the data array from the host to this new memory space on the device.
 The data array is expected to be a numpy array or share the same interface as a numpy array (e.g., dask array).
@@ -98,7 +98,7 @@ The array will then use 4 times less memory than if it was stored as ``float32``
     If `64-bit` data are provided, they will be cast down to `32-bit`, with possible precision lost.
 
 Pull
-----
+~~~~
 
 The ``pull`` function transfers data from the GPU back to the host. It will be returned as a numpy array.
 
@@ -110,7 +110,7 @@ The ``pull`` function transfers data from the GPU back to the host. It will be r
 The data type of the array will be the same as the data type of the image on the GPU.
 
 Free memory
------------
+~~~~~~~~~~~
 
 Because memory on the GPU can be limited, it is beneficial to free memory when it is no longer needed. In pyclesperanto, you can free memory similarly to Python using the `del` keyword.
 
@@ -121,7 +121,7 @@ Because memory on the GPU can be limited, it is beneficial to free memory when i
 
 
 Apply operations on images
-==========================
+--------------------------
 
 In pyclesperanto, most functions are filters or mathematical operations on images. We tried to keep the API as simple as possible with a standard convention for all the functions.
 
@@ -158,7 +158,7 @@ Here, the ``cpu_image`` is pushed to the GPU and the output GPU space is created
 Memory transfers are still applied in the background, but the user does not have to worry about it.
 
 Pipeline of operations
-======================
+----------------------
 
 Most operations in pyclesperanto are filters. This means that you can chain them together to create a pipeline of operations.
 For example, to apply a Gaussian blur followed by a threshold, you can write the following code:

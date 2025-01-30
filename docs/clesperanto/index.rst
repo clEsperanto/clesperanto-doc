@@ -1,6 +1,8 @@
+Introduction
+############
 
 .. todo::
-    - Write introduction
+    - Write project introduction
     - Write GPU-acceleration concepts
 
 .. toctree::

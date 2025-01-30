@@ -1,5 +1,5 @@
-Introduction
-============
+What's clEsperanto?
+===================
 
 The clesperanto project is a multi-language and multi-platform framework for GPU-accelerated image processing.
 It aims in removing language barriers in the scientific image analysis community by proposing a unified interface API for different programming languages and Frameworks, which rely on a common backend library accelerated by GPU.

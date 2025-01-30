@@ -50,6 +50,7 @@ todo_include_todos = True
 # -- pyclesperanto auto-documentation ----------------------------------------
 sys.path.insert(0, str(Path('.', '_submodules/pyclesperanto').resolve()))
 autodoc_mock_imports = ["pyclesperanto._pyclesperanto", "toolz", "matplotlib", "numpy"]
+add_module_names = False
 
 
 # -- CLIc auto-documentation -------------------------------------------------
@@ -82,11 +83,6 @@ html_static_path = ['_static']
 html_theme_options = {
     "light_logo": "logo_w.svg",
     "dark_logo": "logo_d.svg",
-    "logo_only": True,
-    "title_only": False,
-    "sticky_navigation": True,
-    # "navigation_depth": 5,
-    # "collapse_navigation": False,
-    # "version_selector": True,
+    "sidebar_hide_name": True,
 }
 

@@ -6,6 +6,7 @@
 
 import re
 import sys
+import time
 from pathlib import Path
 
 from sphinx.locale import _
@@ -13,6 +14,7 @@ from sphinx.locale import _
 def setup(app):
     app.add_css_file('custom.css')
 
+year = time.localtime().tm_year
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
@@ -20,7 +22,7 @@ def setup(app):
 project = 'clEsperanto'
 slug = re.sub(r"\W+", "-", project.lower())
 author = 'clEsperanto authors'
-copyright = f"2020-2025, clEsperanto authors"
+copyright = f"2020-{year}, clEsperanto authors"
 release = '0.16.0'
 
 # -- General configuration ---------------------------------------------------

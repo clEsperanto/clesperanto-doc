@@ -9,7 +9,7 @@ Welcome to clEsperanto!
 The GPU-accelerated Image Processing library for all!
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    docs/clesperanto/index
 

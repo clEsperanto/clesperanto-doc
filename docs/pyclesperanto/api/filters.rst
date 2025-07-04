@@ -30,3 +30,7 @@ Complete list of all available filters in pyclesperanto.
 .. automodule:: pyclesperanto._tier7
     :members:
     :undoc-members:
+
+.. automodule:: pyclesperanto._tier8
+    :members:
+    :undoc-members:

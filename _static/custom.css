@@ -19,3 +19,15 @@
 .blue-caption {
     color: #00AEEF;
 }
+
+@media (prefers-color-scheme: dark) {
+    .graphviz {
+        filter: invert(1) hue-rotate(180deg);
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    .graphviz {
+        filter: none;
+    }
+}

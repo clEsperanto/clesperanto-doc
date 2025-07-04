@@ -8,5 +8,8 @@ clesperantoJ
 .. toctree::
    :maxdepth: 2
 
-   ./intro
-   ./api/index
+   intro
+   install
+   usage
+   interoperability
+   api/index

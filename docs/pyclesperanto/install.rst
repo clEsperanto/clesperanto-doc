@@ -51,11 +51,12 @@ Install from conda-forge with `conda` or `mamba`:
         conda create -n myenv
         conda activate myenv
 
+
 From source
 -----------
 
 For Development, or if you are using a platform not supported by the package managers, you can install pyclesperanto from source. 
-This process will requires you to have a C compiler available on your system. 
+This process will requires you to have a C/C++ compiler available on your system. 
 Similarly to installing pyclesperanto from the package managers, it is recommended to install it in a virtual environment.
 
 Clone the repository using ``git`` and install it with ``pip``. The installation can take a few minutes to complete.
@@ -68,7 +69,9 @@ Clone the repository using ``git`` and install it with ``pip``. The installation
 
 .. tip::
 
-    You can add the flag ``-v`` to enable verbose output of the build process. This is particularly useful for debugging and provid building logs when reporting issues.
+    You can add the flag ``-v`` to enable verbose output of the build process. This is particularly useful for debugging and providing build logs when reporting issues.
 
+.. note::
 
+    Installing from source is particularly useful if you want to contribute to the package, or if you want to use the package on a non-supported platform (e.g. like Arch Linux)
 

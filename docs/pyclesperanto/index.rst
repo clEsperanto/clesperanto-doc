@@ -17,5 +17,4 @@ pyclesperanto
    usage
    tutorials
    development
-   faq
    api/index

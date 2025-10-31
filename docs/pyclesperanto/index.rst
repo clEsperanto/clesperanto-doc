@@ -5,9 +5,8 @@ pyclesperanto
 .. todo::
     - Proofread the installation instructions
     - proofread the usage instructions
-    - Write the 'how to contribute / development' section
-    - Write the FAQs section
-    - Write the tutorials, examples, and use cases
+    - make examples illustrations
+    - add more examples
 
 
 .. toctree::
@@ -15,6 +14,5 @@ pyclesperanto
 
    install
    usage
-   tutorials
-   development
+   examples
    api/index

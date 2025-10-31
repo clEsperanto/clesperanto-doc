@@ -1,8 +1,8 @@
 Installation
 ============
 
-From package managers (Recommmended)
--------------------------------------
+From package managers (Recommended)
+-----------------------------------
 
 pyclesperanto is available on PyPI and conda-forge. We recommend installing it from one of these package managers.
 
@@ -23,7 +23,6 @@ Install from conda-forge with `conda` or `mamba`:
     .. code:: bash
 
         conda install -c conda-forge pyclesperanto
-
 
 
 .. important::
@@ -55,10 +54,23 @@ Install from conda-forge with `conda` or `mamba`:
 From source
 -----------
 
-For Development, or if you are using a platform not supported by the package managers, you can install pyclesperanto from source. 
-This process will requires you to have a C/C++ compiler available on your system. 
-Similarly to installing pyclesperanto from the package managers, it is recommended to install it in a virtual environment.
+If you want to try the latest development version of pyclesperanto or if existing wheel does not cover your platform (e.g. Arch Linux) or desired configuration.
+Similarly to classic installation, we advise to install it in a virtual environment.
 
+From the repository
+~~~~~~~~~~~~~~~~~~~
+
+you can install it directly from the GitHub repository using pip.
+
+.. code:: bash
+
+    pip install git+https://github.com/clEsperanto/pyclesperanto.git
+
+
+From source
+~~~~~~~~~~~
+
+For Development or Custom Builds you will need to download the source code and build it locally.
 Clone the repository using ``git`` and install it with ``pip``. The installation can take a few minutes to complete.
 
 .. code:: bash
@@ -75,3 +87,16 @@ Clone the repository using ``git`` and install it with ``pip``. The installation
 
     Installing from source is particularly useful if you want to contribute to the package, or if you want to use the package on a non-supported platform (e.g. like Arch Linux)
 
+
+Pyclesperanto rely on a continuous integration system to automatically build and test the package on multiple platforms and python versions.
+Tests can be run locally using ``pytest``:
+
+.. code:: bash
+
+    pytest -v
+
+
+Troubleshooting
+---------------
+
+If you encounter issues during installation or usage that you cannot resolve or consider them bugs, please report them on the `GitHub Issues page <https://github.com/clEsperanto/pyclesperanto/issues>`.

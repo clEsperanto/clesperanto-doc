@@ -2,16 +2,14 @@ CLIc
 ####
 
 .. todo::
-    - Add library architecture with graph
-    - Improve the `build` section with more info and image example
-    - Proofread the text
+    - Proofread the installation instructions
+    - Proofread the usage instructions
+    - Make CMake GUI guide illustrations
 
 .. toctree::
    :maxdepth: 2
 
-   intro
-   build
-   structure
+   install
    usage
-   contribute
+   cmake_gui_guide
    api/index

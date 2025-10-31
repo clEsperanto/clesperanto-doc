@@ -31,3 +31,173 @@
         filter: none;
     }
 }
+
+
+
+
+/* Centered figures */
+.figure-centered {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.figure-centered img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Side-by-side figures container */
+.figures-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 20px 0;
+    align-items: start;
+}
+
+.figure-item {
+    text-align: center;
+    /* Inherit text color from parent for dark/light mode compatibility */
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.figure-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+}
+
+.figure-item figcaption {
+    margin-top: 10px;
+    font-style: italic;
+    font-size: 0.95em;
+    /* Furo theme automatically handles caption color in dark/light mode */
+}
+
+/* Responsive: stack on smaller screens */
+@media (max-width: 768px) {
+    .figures-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Optional: add subtle borders for better definition */
+.figure-item-bordered img {
+    border: 1px solid var(--color-border);
+    padding: 8px;
+}
+
+/* ========== Example Cards Section ========== */
+.example-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin: 30px 0;
+}
+
+/* Style for card group titles */
+.example-card-group h3 {
+    font-size: 1.15em;
+    font-weight: 600;
+    margin: 0 0 12px 0;
+    padding: 0;
+    color: var(--color-foreground);
+}
+
+.example-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-background-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.example-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border-color: var(--color-link);
+}
+
+.example-card-image {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--color-background) 0%, var(--color-background-secondary) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.example-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.example-card:hover .example-card-image img {
+    transform: scale(1.05);
+}
+
+.example-card-content {
+    padding: 18px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.example-card-content ul {
+    margin: 0;
+    padding-left: 20px;
+    list-style-type: disc;
+}
+
+.example-card-content li {
+    margin: 8px 0;
+    line-height: 1.6;
+    font-size: 0.95em;
+}
+
+.example-card-content a {
+    color: var(--color-link);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+}
+
+.example-card-content a:hover {
+    border-bottom-color: var(--color-link);
+}
+
+/* Responsive: adjust grid for mobile */
+@media (max-width: 768px) {
+    .example-cards {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .example-card-image {
+        height: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .example-cards {
+        gap: 12px;
+    }
+    
+    .example-card-content {
+        padding: 14px;
+    }
+    
+    .example-card-image {
+        height: 120px;
+    }
+}

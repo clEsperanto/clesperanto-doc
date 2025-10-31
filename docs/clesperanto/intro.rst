@@ -2,9 +2,9 @@ What's clEsperanto?
 ===================
 
 The clesperanto project is a multi-language and multi-platform framework for GPU-accelerated image processing.
-It aims in removing language barriers in the scientific image analysis community by proposing a unified interface API for different programming languages and Frameworks, which rely on a common backend library accelerated by GPU.
+It aims at removing language barriers in the scientific image analysis community by proposing a unified interface API for different programming languages and frameworks, which rely on a common backend library accelerated by GPU.
 
-The project is organised in a set of core-reposiroty API dedicated each dedicated to a programing language, and a set of plugin or assistant targeting the main BioImage Analysis frameworks (Fiji, Napari, etc.).
+The project is organised in a set of core-repository APIs, each dedicated to a programming language, and a set of plugins or assistants targeting the main BioImage Analysis frameworks (Fiji, Napari, etc.).
 
 The core-repository APIs are composed of the following repositories:
 
@@ -29,7 +29,7 @@ The core-repository APIs are composed of the following repositories:
 - |:snake:| : `pyclesperanto <https://github.com/clEsperanto/pyclesperanto>`_ Python API
 - |:coffee:| : `clesperantoJ <https://github.com/clEsperanto/clesperantoj_prototype>`_ Java API
 
-and a set of satelite repositories which embeded the core API into the main BioImage Analysis frameworks:
+and a set of satellite repositories which embed the core API into the main BioImage Analysis frameworks:
 
 .. .. list-table::
 ..    :header-rows: 1
@@ -53,11 +53,11 @@ How do we work together
 
 clEsperanto is developed as a community effort in the open because we believe in the open source community.
 Contributions like feedback, suggestions, code and testing are very welcome.
-This can be done through github issue, pull requests, or via `image.sc forum <https://forum.image.sc/>`_ using the tag `clesperanto`.
+This can be done through GitHub issues, pull requests, or via `image.sc forum <https://forum.image.sc/>`_ using the tag `clesperanto`.
 
-The clesperanto project is maintained and lead as a `benevolent dictatorship <http://oss-watch.ac.uk/resources/benevolentdictatorgovernancemodel>`_ by `Stephane Rigaud <https://github.com/strigaud>`_ and `Robert Haase <https://github.com/haesleinhuepf>`_.
+The clesperanto project is maintained and led as a `benevolent dictatorship <http://oss-watch.ac.uk/resources/benevolentdictatorgovernancemodel>`_ by `Stephane Rigaud <https://github.com/strigaud>`_ and `Robert Haase <https://github.com/haesleinhuepf>`_.
 
-Contribution are very welcome, and do not hesitate to get in touch with us so that we can help you get started, we are happy to help!
+Contributions are very welcome, and do not hesitate to get in touch with us so that we can help you get started—we are happy to help!
 
 Acknowledgements
 ----------------

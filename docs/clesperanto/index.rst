@@ -2,13 +2,15 @@ Introduction
 ############
 
 .. todo::
-    - regroup all ressources talking about clEsperanto
-    - regroup all references talking about GPU acceleration
+    - fix TOC design
+    - Proofread the GPU overview section
+    - Add contributing guidelines
+    - List project / publication using clesperanto
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    intro
    gpus
    ressources
-   references
+   contributing/index

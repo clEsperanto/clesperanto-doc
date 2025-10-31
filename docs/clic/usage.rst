@@ -1,16 +1,19 @@
 How to use the library
 ======================
 
-It is not adviced to use this library directly in your project as it does not provide a simple API for development.
-Indeed, it is a middle-level code on which rely other user-oriented libraries (`pyclesperanto`, `clesperantoJ`, `etc.`).
+**Note on Direct Usage:** CLIc is primarily intended as a backend for higher-level libraries like pyclesperanto and clesperantoJ, which provide user-friendly APIs.
+Direct use of CLIc is recommended only when you need to implement new operations or integrate it into your own C++ project.
 
-However, as a developer, you may have to use this library to implement new operations or to integrate it into your own project.
-In the following, we provide a simple example to show how to use this library.
+If you're looking for a simpler, more accessible interface, consider using one of the higher-level bindings instead.
+This section provides a practical example for developers who do need to work with CLIc directly.
 
 Initialization
 ~~~~~~~~~~~~~~~
 
-First, we need to initialize the ``Backend``. This is done through the singleton pattern ``BackendManager``.
+**Step 1: Initialize the Backend**
+
+CLIc uses a singleton pattern (via ``BackendManager``) to manage a single, globally-accessible backend instance. This ensures consistent device and resource management throughout your application.
+Initialize it by specifying which compute backend to use:
 
 .. code-block:: c++
 
@@ -18,97 +21,112 @@ First, we need to initialize the ``Backend``. This is done through the singleton
     /* ... */
     cle::BackendManager::getInstance().setBackend("opencl");
 
-The ``cle::BackendManager::getInstance()`` function returns the singleton instance of the ``BackendManager``.
-We can then call the ``setBackend()`` function to set the backend we want to use.
-Here we use the OpenCL backend. This is the only backend available at the moment.
+The ``cle::BackendManager::getInstance()`` function returns the singleton instance of the backend manager.
+The ``setBackend("opencl")`` call initializes the OpenCL backend—currently the only backend available—and automatically discovers all compatible devices (GPUs, CPUs, etc.) on your system.
+If no compatible devices are found, an error is thrown.
 
-Once set, the backend will initialize all ressources available on the machine, and make them available to the library.
-Here, by ressources, we mean devices (CPU, GPU, etc.) that are available on the system.
-If no devices are available, the backend will not be able to initialize and will throw an error.
+**Step 2: Access the Backend**
 
-Now that the backend is initialized, we can access it through the ``getBackend()`` function of the singleton as such:
+After initialization, you can access the backend instance for subsequent operations:
 
 .. code-block:: c++
 
     auto backend = cle::BackendManager::getInstance().getBackend();
 
-With the exception of the device initialisation, most operation involving the backend will be done in the background and are not meant to be accessed by the user.
+Except for device selection, most backend operations happen automatically in the background and rarely need direct access.
 
 Get a device
 ~~~~~~~~~~~~
 
-Operations are done to be executed by a compatible device (CPU, GPU, etc.).
-Hence, before we can continue, we need to select a device on which we will run our operation. This is done through the ``getDevice()`` or ``getDeviceByIndex()`` functions of the backend.
-Here, we can specify the device we want using its name or index, as well as filter the devices by type.
+All GPU operations must be executed on a specific device. Before running operations, you need to select which device (GPU or CPU) to use.
+You can retrieve a device using ``getDevice()`` or ``getDeviceByIndex()`` from the backend, specifying the device name/substring and device type filter:
 
 .. code-block:: c++
 
     auto device = cle::BackendManager::getInstance().getBackend().getDevice("", "all");
 
-By default, we get the first available device of any type possible (CPU or GPU).
-If multiple devices have the same name, we can identify them by their index.
+This selects the first available device of any type. The empty string matches any device name, and ``"all"`` means any device type (GPU or CPU).
 
-For example, if we have two GPUs named ``"RTX 2090``, we can select the second one with the following code:
+If you have multiple devices with the same name, identify them by index:
 
 .. code-block:: c++
 
     auto device = cle::BackendManager::getInstance().getBackend().getDeviceByIndex(1, "gpu");
 
 
-Create, Write, and Read an Array
+Create, Write, and Read Arrays
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-``cle::Array`` is a class that represents an array on the device.
-Similarly to most data structures in C++, it as several constructors and getters.
-Setters, however, are limited to avoid discrepancies between the data on the device and the information stored in the object.
+**Understanding cle::Array**
 
-To create an array, we need to provide the device, the size of the array and the data type of the array.
+``cle::Array`` represents an allocated block of memory on a GPU device. Like standard C++ containers, it has constructors and read-only accessors, but setters are intentionally limited to prevent inconsistencies between device memory and the CPU representation.
+
+**Creating an Array**
+
+To create an array on the device, provide the device reference, dimensions, data type, and memory type:
 
 .. code-block:: c++
 
     auto gpu_array = cle::Array::create(10, 5, 3, 3, cle::dType::FLOAT, cle::mType::BUFFER, device);
 
-Here we create a 3D array of size 10x5x3 of type ``float`` on the device.
-``cle::mType::BUFFER`` is the memory type of the array, here a BUFFER (see the `Array class <https://clesperanto.github.io/CLIc/array.html>`__ for more information on the memory types and methods).
+This creates a 3D array of size 10x5x3 with ``float`` elements in device memory (similar to ``malloc()`` in C).
+The dimensions follow the convention: width, height, depth. The ``cle::mType::BUFFER`` specifies the memory layout type—see the `Array class documentation <https://clesperanto.github.io/CLIc/array.html>`__ for other memory types.
 
-Here, we only created a memory space on the device, similarly as a ``malloc()`` in `C`.
-We need now to write data into the device array.
+**Writing Data to the Device**
+
+After creating the array, transfer data from your CPU to the device:
 
 .. code-block:: c++
 
     gpu_array->writeFrom(array.data());
 
-Where ``array`` is a ``std::vector`` or ``std::array`` of the same size and type as the ``gpu_array`` we are trying to write into.
-We can do the oposite operation and read the ``gpu_array`` into a ``std::vector`` or ``std::array``.
+The ``writeFrom()`` method copies data from your CPU array to the device. The source array must be a ``std::vector`` or ``std::array`` with matching size and data type.
+
+**Reading Data from the Device**
+
+To retrieve results from the device back to your CPU:
 
 .. code-block:: c++
 
     gpu_array->readTo(array.data());
 
+The ``readTo()`` method transfers data from the device back to a CPU ``std::vector`` or ``std::array``.
+
+**Important Notes on Memory Transfers**
+
 .. note::
 
-    The ``read()`` and ``write()`` functions are blocking functions.
-    They will wait for the operation to be done before returning.
+    Both ``readTo()`` and ``writeFrom()`` are **blocking functions**—they wait for the operation to complete before returning. Consider performance implications for large data transfers.
 
 .. warning::
 
-    As we are operating at a low-level API, no proper verification is done on the size or type of the array.
-    We assume here that the developer knows what he is manipulating.
-    Wrong size or type will result in undefined behavior.
+    CLIc performs minimal validation at this low-level API. The developer is responsible for ensuring:
+    
+    - Array sizes match (both value and type)
+    - Data types are compatible
+    - Device memory is sufficient
+    
+    Mismatches result in undefined behavior. Always verify your array configurations.
 
 Execute an Operation
 ~~~~~~~~~~~~~~~~~~~~
 
-Now that we have an array on the device, we can execute an operation on it.
-For this example, we will use the ``AddImageAndScalar`` operation.
+Once you have data on the device, you can execute GPU operations. Here's an example using the ``add_image_and_scalar`` operation:
 
 .. code-block:: c++
 
     auto gpu_result = cle::tier1::add_image_and_scalar(device, gpu_array, nullptr, 5);
 
-``gpu_result`` is a new array on the device that is the result of the operation.
+This operation adds the scalar value 5 to every element in ``gpu_array`` and returns a new array with the results.
+The parameters are: the target device, the input array, an optional output array (``nullptr`` creates one automatically), and operation-specific parameters.
+
+**Memory Requirements for Operations**
 
 .. note::
 
-    The majority of the operations in the library are requiring to have twice the memory space on the device.
-    More advance operations may require more memory space depending on the number of intermediate values needed.
+    Most CLIc operations require additional temporary memory on the device during execution:
+    
+    - Simple operations typically need ~2x the input array size
+    - Complex operations may need significantly more space for intermediate calculations
+    
+    If you encounter memory errors, ensure your device has sufficient free memory or use smaller input arrays.

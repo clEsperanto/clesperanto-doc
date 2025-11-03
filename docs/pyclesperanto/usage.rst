@@ -1,5 +1,5 @@
-Usage
-=====
+How to use
+==========
 
 pyClesperanto is a GPU-accelerated image processing library for Python. To get started, import the library:
 

@@ -1,5 +1,5 @@
-Contributing
-============
+Contributing to pyclesperanto: the Python Wrapper
+=================================================
 
 
 Experimental subpackage

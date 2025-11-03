@@ -1,5 +1,5 @@
-CLIc
-####
+🚀 CLIc 
+#######
 
 .. todo::
     - Proofread the installation instructions

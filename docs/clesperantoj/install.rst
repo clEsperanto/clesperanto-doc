@@ -116,13 +116,6 @@ Refer to the `Prerequisites Overview`_ section above, then follow the platform-s
       sudo apt-get update
       sudo apt-get install build-essential cmake
 
-- **Linux (Fedora/RHEL)**: 
-
-  .. code-block:: bash
-
-      sudo dnf groupinstall "Development Tools"
-      sudo dnf install cmake
-
 **Apache Maven**
 
 Download from `Maven's official website <https://maven.apache.org/download.cgi>`_ and follow `installation instructions <https://maven.apache.org/install.html>`_.
@@ -156,22 +149,13 @@ The compiled artifacts will be available in two locations:
 
 **Building and Running Tests**
 
-To run the test suite:
-
-.. code-block:: bash
-
-    mvn test
-
-To build without running tests:
+It is highly possible that test does not run properly due to some environment issues. In this case it does not mean the build has failed. To build without running tests:
 
 .. code-block:: bash
 
     mvn clean install -DskipTests
 
-.. important::
-
-   Ensure that all required software is available in your system's ``$PATH`` variable and accessible from your terminal.
-   Please refer to the respective software documentation for detailed installation instructions.
+Running the tests outside of Maven is the advised way to ensure everything is functioning correctly for now.
 
 
 Troubleshooting

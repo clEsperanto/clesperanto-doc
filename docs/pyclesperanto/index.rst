@@ -1,6 +1,5 @@
-pyclesperanto
-#############
-
+🐍 pyclesperanto 
+################
 
 .. todo::
     - Proofread the installation instructions
@@ -14,5 +13,5 @@ pyclesperanto
 
    install
    usage
-   examples
    api/index
+   examples

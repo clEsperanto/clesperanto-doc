@@ -1,5 +1,5 @@
-clesperantoJ
-############
+☕ clesperantoJ 
+##############
 
 .. todo::
     - Proofread the installation instructions

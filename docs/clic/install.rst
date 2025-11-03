@@ -236,13 +236,13 @@ Building the library
 
     .. container:: figures-grid
 
-        .. figure:: ./image/cmake_configuration_1.png
+        .. figure:: ./image/cmake_configure_1.png
             :width: 95%
             :alt: First configuration run
 
             **Step 1:** First configuration run, with unvalidated settings in red
 
-        .. figure:: ./image/cmake_configuration_2.png
+        .. figure:: ./image/cmake_configure_2.png
             :width: 95%
             :alt: Second configuration run to validate settings
 
@@ -266,7 +266,7 @@ Building the library
 
     .. container:: figure-centered
         
-        .. figure:: ./image/cmake_xcode.png
+        .. figure:: ./image/cmake_xcode_project.png
             :alt: XCode project after generation
             :width: 80%
 

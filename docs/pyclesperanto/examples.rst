@@ -1,5 +1,5 @@
-Examples and Tutorials
-======================
+Examples & Tutorials
+====================
 
 .. raw:: html
 

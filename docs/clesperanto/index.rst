@@ -7,10 +7,16 @@ Introduction
     - Add contributing guidelines
     - List project / publication using clesperanto
 
-.. toctree::
-   :maxdepth: 2
 
-   intro
-   gpus
-   ressources
-   contributing/index
+.. include:: intro.rst
+.. include:: gpus.rst    
+
+
+
+.. .. toctree::
+..    :maxdepth: 1
+
+..    intro
+..    gpus
+..    ressources
+..    contributing/index

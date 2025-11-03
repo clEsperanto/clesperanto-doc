@@ -1,5 +1,5 @@
-Contribute to the Library
-=========================
+Contribute CLIc: the C++ Backend
+================================
 
 The image processing functions are organized into tiers.
 Each tier consists of functions that rely on one or more functions from the previous tier.

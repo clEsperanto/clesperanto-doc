@@ -1,5 +1,5 @@
-How to use the library
-======================
+How to use
+==========
 
 **Note on Direct Usage:** CLIc is primarily intended as a backend for higher-level libraries like pyclesperanto and clesperantoJ, which provide user-friendly APIs.
 Direct use of CLIc is recommended only when you need to implement new operations or integrate it into your own C++ project.

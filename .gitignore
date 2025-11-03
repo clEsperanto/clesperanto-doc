@@ -6,3 +6,7 @@ _submodules/**
 # pixi environments
 .pixi
 *.egg-info
+
+# system files
+.DS_Store
+Thumbs.db

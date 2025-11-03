@@ -171,20 +171,10 @@ Building the library
 
 .. tab:: CMake GUI
 
-    Launching CMake GUI
-    ~~~~~~~~~~~~~~~~~~~
-
-    Start by launching the CMake GUI application from your system interface or from the terminal by running ``cmake-gui``.
-
-    .. container:: figure-centered
-        
-        .. figure:: ./image/cmake_gui_launch.png
-            :alt: CMake GUI initial window
-            :width: 70%
-
     Setting Up the Build Directory
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+    Start by launching the CMake GUI application from your system interface or from the terminal by running ``cmake-gui``.
     Once CMake GUI is open, you need to configure the source and build directories:
 
     1. **Source Code Path**: Click ``Browse Source`` and navigate to the cloned CLIc repository directory.
@@ -215,28 +205,48 @@ Building the library
        - On macOS: ``Xcode``, ``Ninja``, or ``Unix Makefiles``
        - On Linux: ``Unix Makefiles`` or ``Ninja``
 
-    .. container:: figure-centered
-        
-        .. figure:: ./image/cmake_gui_generator.png
-            :alt: CMake GUI generator selection dialog
-            :width: 80%
+    .. container:: figures-grid
+
+        .. figure:: ./image/cmake_generator.png
+            :width: 95%
+            :alt: Generator selection dialog
+
+            **Step 1:** Select the generator
+
+        .. figure:: ./image/cmake_generator_list.png
+            :width: 95%
+            :alt: Generator list
+
+            **Step 2:** Select the generator from the list (present on your system)
 
     3. After selection, CMake will analyze the project and populate the configuration options. 
+
+    .. note::
+
+        Similarly to VSCode, CMake GUI can load and use the pre-configured presets located in the ``cmake/presets`` directory of the project.
 
     Fix Requirements and set Options
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     After configuration is complete, you will see a list of CMake variables in the CMake GUI window. They represent various build options, settings, and dependencies.
-    If some fields are highlighted in red, it indicates missing dependencies or information that need to be resolved before proceeding (e.g. cmake could not find OpenCL headers).
+    Configure again to validate the settings and ensure all dependencies are met, until no red entries remain.
+
+    Fields are highlighted in red that remains indicates missing dependencies or information that need to be resolved before proceeding (e.g. cmake could not find OpenCL headers).
     This is usually fixed by installing the missing dependencies on your system or providing the correct paths to CMake.
 
-    You can also adjust the build options according to your needs (e.g. build type, building tests, buildings docs, etc.).
+    .. container:: figures-grid
 
-    .. container:: figure-centered
-        
-        .. figure:: ./image/cmake_gui_options.png
-            :alt: CMake GUI configuration options view
-            :width: 80%
+        .. figure:: ./image/cmake_configuration_1.png
+            :width: 95%
+            :alt: First configuration run
+
+            **Step 1:** First configuration run, with unvalidated settings in red
+
+        .. figure:: ./image/cmake_configuration_2.png
+            :width: 95%
+            :alt: Second configuration run to validate settings
+
+            **Step 2:** Second configuration run to validate settings
 
     **Common options to configure:**
 
@@ -256,8 +266,8 @@ Building the library
 
     .. container:: figure-centered
         
-        .. figure:: ./image/cmake_gui_generate.png
-            :alt: CMake GUI after successful configuration and generation
+        .. figure:: ./image/cmake_xcode.png
+            :alt: XCode project after generation
             :width: 80%
 
     Troubleshooting

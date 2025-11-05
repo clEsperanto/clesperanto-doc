@@ -11,7 +11,6 @@ from pathlib import Path
 
 from sphinx.locale import _
 
-
 def parse_version():
 
     # read the file ".readthedocs.yaml" and parse to find all version numbers
@@ -74,8 +73,15 @@ autodoc_mock_imports = ["pyclesperanto._pyclesperanto", "toolz", "matplotlib", "
 add_module_names = False
 
 
+sys.path.insert(0, str(Path('.', '_submodules/clesperantoj').resolve()))
+
+
+
 # -- CLIc auto-documentation -------------------------------------------------
-breathe_projects = {'CLIc': './_submodules/clic/docs/build/doxygen/xml'}
+breathe_projects = {
+    'CLIc': './_submodules/clic/docs/build/doxygen/xml',
+    'clesperantoj': './_submodules/clesperantoj/docs/xml',
+    }
 breathe_default_project = 'CLIc'
 breathe_domain_by_extension = {'h': 'cpp', 'hpp': 'cpp'}
 cpp_index_common_prefix = [
@@ -89,7 +95,6 @@ cpp_index_common_prefix = [
     'cle::tier7::',
     'cle::tier8::',
     ]
-
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output

@@ -1,6 +1,12 @@
 API Reference
 =============
 
-.. toc-tree::
-    :maxdepth: 1
+The following section documents clesperantoJ API
+
+.. toctree::
+    :maxdepth: 2
     
+    core
+    converters
+    kernels
+

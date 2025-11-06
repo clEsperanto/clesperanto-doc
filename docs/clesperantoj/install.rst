@@ -161,6 +161,8 @@ Running the tests outside of Maven is the advised way to ensure everything is fu
 Troubleshooting
 ---------------
 
+If you encounter issues during installation or usage that you cannot resolve or consider them bugs, please report them on the `GitHub Issues page <https://github.com/clEsperanto/clesperantoj/issues>`__.
+
 **Maven command not found**
     Ensure Maven's ``bin`` directory is in your ``$PATH``. Verify with ``mvn --version``.
 

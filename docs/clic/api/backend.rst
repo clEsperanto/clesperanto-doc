@@ -1,8 +1,5 @@
-Backend
--------
-
-Backend Manager
-~~~~~~~~~~~~~~~
+Backends & Backend Manager
+--------------------------
 
 The Backend Manager is a singleton class that manages backend selection and initialization.
 It is designed to allow only one backend to be active at a time. Users can select
@@ -18,9 +15,6 @@ If both fail, the library will throw an exception.
 .. doxygenclass:: cle::BackendManager
     :members:
 
-
-Backend Class
-~~~~~~~~~~~~~
 
 The `Backend` class is an abstract class defining the interface for the different hardware backends supported by CLIc.
 Inherited classes implement the necessary low-level functions to operate the hardware.
@@ -38,14 +32,8 @@ Currently, the library supports OpenCL and CUDA backends, with the possibility o
 .. doxygenclass:: cle::Backend
     :members:
 
-OpenCL Backend
-~~~~~~~~~~~~~~
-
 .. doxygenclass:: cle::OpenCLBackend
     :members:
-
-CUDA Backend
-~~~~~~~~~~~~
 
 .. doxygenclass:: cle::CUDABackend
     :members:

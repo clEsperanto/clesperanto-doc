@@ -27,7 +27,9 @@ You'll need the following software installed on your system:
      - Build system generator. `Download <https://cmake.org/download/>`__
    * - C++ Compiler
      - C++17 compatible
-     - **Windows**: `MSVC <https://visualstudio.microsoft.com/>`__ or Visual Studio Build Tools | **macOS**: `Xcode command line tools <https://developer.apple.com/xcode/resources/>`__ (``xcode-select --install``) | **Linux**: `GCC <https://packages.ubuntu.com/jammy/build-essential>`__ or Clang
+     - | **Windows**: `MSVC <https://visualstudio.microsoft.com/>`__ or Visual Studio Build Tools
+       | **macOS**: `Xcode command line tools <https://developer.apple.com/xcode/resources/>`__ (``xcode-select --install``)
+       | **Linux**: `GCC <https://packages.ubuntu.com/jammy/build-essential>`__ or Clang
    * - OpenCL
      - Latest
      - GPU compute framework. Usually provided by your `GPU vendor <https://www.khronos.org/opencl/>`__
@@ -304,24 +306,28 @@ The following options are available:
 Running the Tests
 -----------------
 
-Simply building the library does not necessarily guarantee its correct functionality. Tests provided with the library must be run to ensure that the library is working as expected.
-If the option ``-D BUILD_TESTS=ON`` is set during configuration (it is by default), the tests will be built along with the library and can be run.
-Once built, one can run all the tests using the following command in the build directory:
+.. container:: text-justify
+
+    Simply building the library does not necessarily guarantee its correct functionality. Tests provided with the library must be run to ensure that the library is working as expected.
+    If the option ``-D BUILD_TESTS=ON`` is set during configuration (it is by default), the tests will be built along with the library and can be run.
+    Once built, one can run all the tests using the following command in the build directory:
 
 .. code-block:: bash
 
    ctest --test-dir ./build -C Debug -V
 
-The ``--test-dir`` flag specifies the directory where the build is located. The ``-C`` flag specifies the configuration to use.
-The ``-V`` flag indicates that the tests should be run in verbose mode.
+.. container:: text-justify
 
-If using VSCode or any other IDE, it is also possible to run the tests directly from it. Please refer to the respective software documentation for instructions on how to run the tests with CMake and the IDE.
+    The ``--test-dir`` flag specifies the directory where the build is located. The ``-C`` flag specifies the configuration to use.
+    The ``-V`` flag indicates that the tests should be run in verbose mode.
 
-Clesperanto project relies on a continuous integration system that runs the tests on every commit to ensure the stability of the codebase for multiple platforms (MacOS, Windows, and Ubuntu).
-This drastically reduces the chances of bugs being introduced in the codebase and ensures that the library remains functional across different environments.
-However, it is still recommended to run the tests locally after building the library to ensure everything is working as expected.
+    If using VSCode or any other IDE, it is also possible to run the tests directly from it. Please refer to the respective software documentation for instructions on how to run the tests with CMake and the IDE.
 
-It is also an important step for developers who are contributing to the project. 
+    Clesperanto project relies on a continuous integration system that runs the tests on every commit to ensure the stability of the codebase for multiple platforms (MacOS, Windows, and Ubuntu).
+    This drastically reduces the chances of bugs being introduced in the codebase and ensures that the library remains functional across different environments.
+    However, it is still recommended to run the tests locally after building the library to ensure everything is working as expected.
+
+    It is also an important step for developers who are contributing to the project. 
 
 .. important::
 
@@ -339,4 +345,4 @@ It is also an important step for developers who are contributing to the project.
 Troubleshooting
 ---------------
 
-If you encounter issues during the build or test process that you cannot resolve or consider them bugs, please report them on the `GitHub Issues page <https://github.com/clEsperanto/CLIc/issues>`.
+If you encounter issues during the build or test process that you cannot resolve or consider them bugs, please report them on the `GitHub Issues page <https://github.com/clEsperanto/CLIc/issues>`__.

@@ -1,11 +1,13 @@
 How to use
 ==========
 
-**Note on Direct Usage:** CLIc is primarily intended as a backend for higher-level libraries like pyclesperanto and clesperantoJ, which provide user-friendly APIs.
-Direct use of CLIc is recommended only when you need to implement new operations or integrate it into your own C++ project.
+.. container:: text-justify
 
-If you're looking for a simpler, more accessible interface, consider using one of the higher-level bindings instead.
-This section provides a practical example for developers who do need to work with CLIc directly.
+   **Note on Direct Usage:** CLIc is primarily intended as a backend for higher-level libraries like pyclesperanto and clesperantoJ, which provide user-friendly APIs.
+   Direct use of CLIc is recommended only when you need to implement new operations or integrate it into your own C++ project.
+
+   If you're looking for a simpler, more accessible interface, consider using one of the higher-level bindings instead.
+   This section provides a practical example for developers who do need to work with CLIc directly.
 
 Initialization
 ~~~~~~~~~~~~~~~
@@ -130,3 +132,22 @@ The parameters are: the target device, the input array, an optional output array
     - Complex operations may need significantly more space for intermediate calculations
     
     If you encounter memory errors, ensure your device has sufficient free memory or use smaller input arrays.
+
+Execute a mini-pipeline
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Combining multiple operations into a processing pipeline is straightforward. `clesperanto` is designed to facilitate chaining operations together efficiently.
+
+.. code-block:: c++
+
+    /* 
+     * Prepare input, output containers on CPU and allocate a device 
+     */
+
+    auto gpu_input = cle::Array::create(10, 5, 3, 3, cle::dType::FLOAT, cle::mType::BUFFER, device);
+    gpu_input->writeFrom(cpu_input.data());
+
+    auto gpu_blurred = cle::tier1::gaussian_blur(device, gpu_input, nullptr, 1.0, 1.0, 1.0);
+    auto gpu_thresholded = cle::tier4::threshold_otsu(device, gpu_blurred, nullptr);
+
+    gpu_thresholded->readTo(cpu_output.data());

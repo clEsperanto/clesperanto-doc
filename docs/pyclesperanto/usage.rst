@@ -22,7 +22,6 @@ Next, you can explore the devices available on your computer using the `list_ava
     # Return the name, index, and information on all the devices
     print(cle.info())
 
-
 To work on a specific device, you need to select it. By default, pyclesperanto automatically selects the last available device at import time.
 You can check the current device with the `get_device()` function and switch devices using the `select_device()` function:
 
@@ -35,8 +34,6 @@ You can check the current device with the `get_device()` function and switch dev
     cle.select_device("NVIDIA RTX 4090") # full name
     cle.select_device("TX")              # substring
     cle.select_device(0)                 # device index
-
-
 
 Memory transfer
 ---------------
@@ -73,7 +70,6 @@ You can also use an existing image as a template, which copies its size and data
 
     # Create an empty image on the GPU with the same size and data type as the template image
     gpu_image = cle.create_like(template_image)
-
 
 Push
 ~~~~
@@ -116,7 +112,6 @@ Because memory on the GPU can be limited, it is beneficial to free memory when i
 
     # Free the memory of the image on the GPU
     del gpu_image
-
 
 Apply operations on images
 --------------------------
@@ -188,3 +183,9 @@ For optimized code, chain operations together to minimize memory transfers:
 
 This approach uses only one ``push`` (inside ``gaussian_blur``) and one ``pull`` at the end of the pipeline.
 Output memory is automatically allocated for each operation, minimizing unnecessary data transfers.
+
+Tutorials and Examples
+----------------------
+
+Several tutorials and examples are available to help you get started with pyclesperanto and explore its capabilities.
+For a complete list of examples and tutorials, please visit the :doc:`examples` page.

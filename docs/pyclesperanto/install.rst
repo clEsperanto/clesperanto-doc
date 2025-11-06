@@ -6,8 +6,6 @@ From package managers (Recommended)
 
 pyclesperanto is available on PyPI and conda-forge. We recommend installing it from one of these package managers.
 
-Install from conda-forge with `conda` or `mamba`:
-
 .. tab:: Pip
 
     Install from PyPI with `pip`:
@@ -16,7 +14,15 @@ Install from conda-forge with `conda` or `mamba`:
 
         pip install pyclesperanto
 
-.. tab:: Conda
+.. tab:: Pixi
+
+    Install from pixi with `pixi`:
+
+    .. code:: bash
+
+        pixi add --pypi pyclesperanto
+
+.. tab:: Conda/Mamba
 
     Install from conda-forge with `conda` or `mamba`:
 
@@ -24,26 +30,26 @@ Install from conda-forge with `conda` or `mamba`:
 
         conda install -c conda-forge pyclesperanto
 
+    .. important::
 
-.. important::
+        Installing pyclesperanto with mamba or conda on MacOS or Linux will require an additional package to be installed to see compatible OpenCL platforms.
 
-    Installing pyclesperanto with mamba or conda on MacOS or Linux will require an additional package to be installed to see compatible OpenCL platforms.
+        .. tab:: MacOS
 
-    .. tab:: MacOS
+            .. code:: bash
 
-        .. code:: bash
+                conda install -c conda-forge ocl_icd_wrapper_apple
 
-            conda install -c conda-forge ocl_icd_wrapper_apple
+        .. tab:: Linux
 
-    .. tab:: Linux
+            .. code:: bash
 
-        .. code:: bash
-
-            conda install -c conda-forge ocl-icd-system
+                conda install -c conda-forge ocl-icd-system
 
 .. tip::
 
-    It is strongly advised to install pyclesperanto in a virtual environment. For example, you can create a new environment with conda:
+    It is strongly advised to install pyclesperanto in a virtual environment.  
+    For example, you can create a new environment with `conda`:
 
     .. code:: bash
 
@@ -66,9 +72,8 @@ you can install it directly from the GitHub repository using pip.
 
     pip install git+https://github.com/clEsperanto/pyclesperanto.git
 
-
-From source
-~~~~~~~~~~~
+For Development
+~~~~~~~~~~~~~~~
 
 For Development or Custom Builds you will need to download the source code and build it locally.
 Clone the repository using ``git`` and install it with ``pip``. The installation can take a few minutes to complete.
@@ -99,4 +104,4 @@ Tests can be run locally using ``pytest``:
 Troubleshooting
 ---------------
 
-If you encounter issues during installation or usage that you cannot resolve or consider them bugs, please report them on the `GitHub Issues page <https://github.com/clEsperanto/pyclesperanto/issues>`.
+If you encounter issues during installation or usage that you cannot resolve or consider them bugs, please report them on the `GitHub Issues page <https://github.com/clEsperanto/pyclesperanto/issues>`__.

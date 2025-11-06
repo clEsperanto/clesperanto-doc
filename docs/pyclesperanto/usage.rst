@@ -38,14 +38,16 @@ You can check the current device with the `get_device()` function and switch dev
 Memory transfer
 ---------------
 
-GPU devices have separate memory from your computer. You must transfer data to the device to process it and transfer results back to read them.
-This is known as `copy from host to device` and `copy from device to host`. pyclesperanto provides three functions to manage memory transfer:
+.. container:: text-justify
 
-- `push` is used to transfer/copy data from the host to the device.
-- `pull` is used to transfer/copy data from the device to the host.
-- `create` is used to allocate empty space on the device, which will be used, for example, to store a result.
+    GPU devices have separate memory from your computer. You must transfer data to the device to process it and transfer results back to read them.
+    This is known as `copy from host to device` and `copy from device to host`. pyclesperanto provides three functions to manage memory transfer:
 
-These copy operations are costly in terms of time as they scale with the data size. Therefore, it is good practice to avoid them as much as possible once you are optimizing your code.
+    - `push` is used to transfer/copy data from the host to the device.
+    - `pull` is used to transfer/copy data from the device to the host.
+    - `create` is used to allocate empty space on the device, which will be used, for example, to store a result.
+
+    These copy operations are costly in terms of time as they scale with the data size. Therefore, it is good practice to avoid them as much as possible once you are optimizing your code.
 
 Create
 ~~~~~~
@@ -188,4 +190,4 @@ Tutorials and Examples
 ----------------------
 
 Several tutorials and examples are available to help you get started with pyclesperanto and explore its capabilities.
-For a complete list of examples and tutorials, please visit the :doc:`examples` page.
+For a complete list of examples and tutorials, please visit the :doc:`examples and tutorials <examples>` page.

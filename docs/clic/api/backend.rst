@@ -1,5 +1,5 @@
-Backends & Backend Manager
---------------------------
+Backends
+--------
 
 The Backend Manager is a singleton class that manages backend selection and initialization.
 It is designed to allow only one backend to be active at a time. Users can select

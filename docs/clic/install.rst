@@ -1,11 +1,13 @@
 Installation
 ============
 
-CLIc is a C++ library that requires compilation before use. This guide will help you set up your environment and build the library from source.
-If you are new to C++ development, you may want to familiarize yourself with C++ and CMake before proceeding. 
+.. container:: text-justify
 
-- `C++ Tutorial <https://www.tutorialspoint.com/cplusplus/index.htm>`__.
-- `CMake Tutorial <https://cmake.org/cmake/help/latest/guide/tutorial/index.html>`__.
+    CLIc is a C++ library that requires compilation before use. This guide will help you set up your environment and build the library from source.
+    If you are new to C++ development, you may want to familiarize yourself with C++ and CMake before proceeding. 
+
+    - `C++ Tutorial <https://www.tutorialspoint.com/cplusplus/index.htm>`__.
+    - `CMake Tutorial <https://cmake.org/cmake/help/latest/guide/tutorial/index.html>`__.
 
 Requirements
 ------------

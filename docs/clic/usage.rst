@@ -149,5 +149,6 @@ Combining multiple operations into a processing pipeline is straightforward. `cl
 
     auto gpu_blurred = cle::tier1::gaussian_blur(device, gpu_input, nullptr, 1.0, 1.0, 1.0);
     auto gpu_thresholded = cle::tier4::threshold_otsu(device, gpu_blurred, nullptr);
+    auto gpu_labeled = cle::tier5::connected_components_labeling_box(device, gpu_thresholded, nullptr);
 
-    gpu_thresholded->readTo(cpu_output.data());
+    gpu_labeled->readTo(cpu_output.data());

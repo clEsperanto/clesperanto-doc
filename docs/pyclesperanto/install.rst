@@ -22,6 +22,10 @@ pyclesperanto is available on PyPI and conda-forge. We recommend installing it f
 
         pixi add --pypi pyclesperanto
 
+    .. note::
+
+        It is recommended to use --pypi flag to ensure installation from PyPI repository with `pixi`.
+
 .. tab:: Conda/Mamba
 
     Install from conda-forge with `conda` or `mamba`:

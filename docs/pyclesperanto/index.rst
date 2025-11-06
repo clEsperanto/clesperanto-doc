@@ -2,11 +2,9 @@
 ################
 
 .. todo::
-    - Proofread the installation instructions
-    - proofread the usage instructions
+    - Proofread pyclesperanto documentation
     - make examples illustrations
     - add more examples
-
 
 .. toctree::
    :maxdepth: 2

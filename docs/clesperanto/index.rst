@@ -2,21 +2,10 @@ Introduction
 ############
 
 .. todo::
-    - fix TOC design
-    - Proofread the GPU overview section
+    - add gpu and theory overview section
     - Add contributing guidelines
     - List project / publication using clesperanto
-
 
 .. include:: intro.rst
 .. include:: gpus.rst    
 
-
-
-.. .. toctree::
-..    :maxdepth: 1
-
-..    intro
-..    gpus
-..    ressources
-..    contributing/index

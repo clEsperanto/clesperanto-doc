@@ -2,10 +2,8 @@
 ##############
 
 .. todo::
-    - Proofread the installation instructions
-    - Write usage instructions
-    - Add API documentation
-
+    - Proofread clesperantoJ documentation
+    
 .. toctree::
    :maxdepth: 2
 

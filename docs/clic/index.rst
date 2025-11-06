@@ -2,9 +2,7 @@
 #######
 
 .. todo::
-    - Proofread the installation instructions
-    - Proofread the usage instructions
-    - Make CMake GUI guide illustrations
+    - Proofread clic documentation
 
 .. toctree::
    :maxdepth: 2

@@ -33,7 +33,7 @@ Examples & Tutorials
          </div>
          <div class="example-card-content">
 
-- `Arrays Manipulation <https://github.com/clEsperanto/pyclesperanto/tree/main/demos/basics/crop_flip_paste.ipynb>`_
+- `Arrays manipulation <https://github.com/clEsperanto/pyclesperanto/tree/main/demos/basics/crop_flip_paste.ipynb>`_
 - `Arrays arithmetics <https://github.com/clEsperanto/pyclesperanto/tree/main/demos/basics/arithmetic_operators.ipynb>`_
 - `Matrix arithmetics <https://github.com/clEsperanto/pyclesperanto/tree/main/demos/basics/matrices_operations.ipynb>`_
 - `Vector-Matrix arithmetics <https://github.com/clEsperanto/pyclesperanto/tree/main/demos/basics/vectors_and_matrices_operations.ipynb>`_

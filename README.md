@@ -1,3 +1,3 @@
-# clesperanto-doc
+# clEsperanto Documentation
 
 clEsperanto documentation

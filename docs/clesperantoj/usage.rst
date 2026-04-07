@@ -26,7 +26,7 @@ You can also specify the device by providing a substring to identify it and a ty
     DeviceJ device = DeviceJ.getDevice("NVIDIA", "gpu");   // Get the first "NVIDIA" GPU device
 
 
-Manage memory
+Data transfer
 -------------
 
 The main data structure in clesperantoJ is `ArrayJ`, which represents a buffer stored on a device.

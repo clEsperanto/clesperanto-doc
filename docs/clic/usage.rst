@@ -27,20 +27,9 @@ The ``cle::BackendManager::getInstance()`` function returns the singleton instan
 The ``setBackend("opencl")`` call initializes the OpenCL backend—currently the only backend available—and automatically discovers all compatible devices (GPUs, CPUs, etc.) on your system.
 If no compatible devices are found, an error is thrown.
 
-**Step 2: Access the Backend**
+**Step 2: Initialise a Device**
 
-After initialization, you can access the backend instance for subsequent operations:
-
-.. code-block:: c++
-
-    auto backend = cle::BackendManager::getInstance().getBackend();
-
-Except for device selection, most backend operations happen automatically in the background and rarely need direct access.
-
-Get a device
-~~~~~~~~~~~~
-
-All GPU operations must be executed on a specific device. Before running operations, you need to select which device (GPU or CPU) to use.
+All GPU operations must be executed on a specific device. Before running operations, you need to select which device (GPU or CPU) to use from the backend.
 You can retrieve a device using ``getDevice()`` or ``getDeviceByIndex()`` from the backend, specifying the device name/substring and device type filter:
 
 .. code-block:: c++
@@ -56,8 +45,8 @@ If you have multiple devices with the same name, identify them by index:
     auto device = cle::BackendManager::getInstance().getBackend().getDeviceByIndex(1, "gpu");
 
 
-Create, Write, and Read Arrays
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Data transfer
+-------------
 
 **Understanding cle::Array**
 

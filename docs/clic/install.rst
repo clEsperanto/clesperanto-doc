@@ -148,7 +148,7 @@ Building the library
 
     .. code-block:: bash
 
-        cmake -S . -B build -G <Generator> -DCMAKE_BUILD_TYPE=<BuildType> [OPTIONS]
+        cmake -S . -B build -G <Generator> -DCMAKE_BUILD_TYPE=<BuildType> -DCLE_BACKEND=<Backend> [OPTIONS]
 
     **Parameters:**
 
@@ -156,6 +156,7 @@ Building the library
     - ``-B build`` - Specifies the build directory where generated files will be placed
     - ``-G <Generator>`` - Specifies the build system generator (e.g., ``Ninja``, ``Unix Makefiles``, ``Visual Studio 17 2022``, etc.), list of generators can be found in the `CMake documentation <https://cmake.org/cmake/help/latest/manual/cmake-generators.7.html>`__
     - ``-DCMAKE_BUILD_TYPE=<BuildType>`` - Specifies the build type: ``Debug``, ``Release``, ``RelWithDebInfo``, or ``MinSizeRel``
+    - ``-DCLE_BACKEND=<Backend>`` - Specifies the backend to build against: ``OPENCL``, ``CUDA``, or ``METAL`` (default is ``OPENCL``)
     - ``[OPTIONS]`` - Additional CMake variables using the ``-D<NAME>=<VALUE>`` format
 
     Building the Project
@@ -294,10 +295,9 @@ CMake Configuration options Project Variables
 
 The following options are available:
 
-- :BUILD_TESTS: Enable the build of the tests. Default is ``OFF``.
-- :BUILD_CUDA_BACKEND: Enable the build of the CUDA backend. Default is ``OFF``, (__WIP__).
-- :BUILD_OPENCL_BACKEND: Enable the build of the OpenCL backend. Default is ``ON``.
-- :BUILD_DOCUMENTATION: Enable the build of the documentation. Default is ``ON`` (``sphinx`` and ``doxygen`` required, else it will be skipped).
+- :CLE_BACKEND: Specify the backend to build against: ``OPENCL``, ``CUDA``, or ``METAL`` (default is ``OPENCL``).
+- :BUILD_TESTS: Enable the build of the tests. Default is ``ON``.
+- :BUILD_DOCUMENTATION: Enable the generation of the doxygen as ``xml`` files. Default is ``ON`` (``sphinx`` and ``doxygen`` required, else it will be skipped).
 - :BUILD_SHARED_LIBS: Build the library as a shared library. Default is ``ON``.
 - :BUILD_COVERAGE: Enable the build of the coverage report. Default is ``OFF``.
 - :BUILD_BENCHMARKS: Enable the build of the benchmarks. Default is ``OFF`` (__WIP__).

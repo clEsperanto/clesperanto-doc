@@ -4,7 +4,7 @@ Installation
 .. container:: text-justify
 
     CLIc is a C++ library that requires compilation before use. This guide will help you set up your environment and build the library from source.
-    If you are new to C++ development, you may want to familiarize yourself with C++ and CMake before proceeding. 
+    If you are new to C++ development, you may want to learn about C++ and CMake before proceeding. 
 
     - `C++ Tutorial <https://www.tutorialspoint.com/cplusplus/index.htm>`__.
     - `CMake Tutorial <https://cmake.org/cmake/help/latest/guide/tutorial/index.html>`__.
@@ -49,7 +49,7 @@ You'll need the following software installed on your system:
 
 .. important::
 
-   Ensure that all the following software are available in your system's ``$PATH`` variable, especially `Git` and `CMake`.
+   Ensure that all required software is available in your system's ``$PATH`` variable, especially ``Git`` and ``CMake``.
    Please refer to the respective software documentation for proper installation instructions.
 
 
@@ -59,7 +59,7 @@ Building the library
 
 .. tab:: VSCode
 
-    - Install the `C/C++ Extension Pack` Extension provided by Microsoft.
+    - Install the ``C/C++ Extension Pack`` extension provided by Microsoft.
 
     .. container:: figure-centered
         
@@ -75,7 +75,7 @@ Building the library
             :alt: Git clone CLIc repository
             :width: 80%
 
-    - The project comes with pre-configured CMake settings for ``MSVC``, ``Ninja`` and ``Makefile``.
+    - The project comes with pre-configured CMake presets for ``MSVC``, ``Ninja``, and ``Makefile``.
         - Open the CMake Tools side panel from the left toolbar
         - Select a configuration process (``Ninja ...``, ``MSVC ...``, ``Makefile ...``, etc.) depending on your system and preference.
 
@@ -101,7 +101,7 @@ Building the library
                 :alt: CMake build type selection
                 :width: 80%
 
-        - Run the configuration and build process ``Ctrl+Shift+P -> CMake: Configure`` and then ``Ctrl+Shift+P -> CMake: Build``
+        - Run the configuration and build commands: ``Ctrl+Shift+P -> CMake: Configure`` then ``Ctrl+Shift+P -> CMake: Build``
 
         .. container:: figure-centered
 
@@ -115,8 +115,8 @@ Building the library
 
 .. tab:: CLI Terminal
 
-    Prerequisites Check
-    ~~~~~~~~~~~~~~~~~~~
+    Prerequisite Check
+    ~~~~~~~~~~~~~~~~~~
 
     Before you begin, verify that you have ``cmake`` and ``git`` installed on your system.
     Open a terminal and run the following commands to check their availability:
@@ -230,13 +230,13 @@ Building the library
 
         Similarly to VSCode, CMake GUI can load and use the pre-configured presets located in the ``cmake/presets`` directory of the project.
 
-    Fix Requirements and set Options
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Address Missing Requirements and Set Options
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    After configuration is complete, you will see a list of CMake variables in the CMake GUI window. They represent various build options, settings, and dependencies.
-    Configure again to validate the settings and ensure all dependencies are met, until no red entries remain.
+    After configuration is complete, you will see a list of CMake variables in the CMake GUI window. These variables represent various build options, settings, and dependencies.
+    Configure again to validate the settings and ensure all dependencies are met until no red entries remain.
 
-    Fields are highlighted in red that remains indicates missing dependencies or information that need to be resolved before proceeding (e.g. cmake could not find OpenCL headers).
+    Fields highlighted in red indicate missing dependencies or information that needs to be resolved before proceeding (e.g., CMake could not find OpenCL headers).
     This is usually fixed by installing the missing dependencies on your system or providing the correct paths to CMake.
 
     .. container:: figures-grid
@@ -261,7 +261,7 @@ Building the library
     Building the Project
     ~~~~~~~~~~~~~~~~~~~~
 
-    Once you have configured all the options, we can generate the build files accordingly to your generator choice.
+    Once you have configured all the options, you can generate the build files accordingly to your generator choice.
 
     1. Click the ``Generate`` button to generate the build files.
 
@@ -290,8 +290,8 @@ Building the library
         CMake GUI Documentation: https://cmake.org/cmake/help/latest/manual/cmake-gui.1.html
 
 
-CMake Configuration options Project Variables
----------------------------------------------
+CMake Configuration Options
+----------------------------
 
 The following options are available:
 
@@ -310,9 +310,9 @@ Running the Tests
 
 .. container:: text-justify
 
-    Simply building the library does not necessarily guarantee its correct functionality. Tests provided with the library must be run to ensure that the library is working as expected.
-    If the option ``-D BUILD_TESTS=ON`` is set during configuration (it is by default), the tests will be built along with the library and can be run.
-    Once built, one can run all the tests using the following command in the build directory:
+    Building the library alone does not guarantee that it functions correctly. Tests provided with the library must be run to verify functionality.
+    If the option ``-D BUILD_TESTS=ON`` is set during configuration (default), the tests will be built along with the library.
+    Once built, run all tests using the following command in the build directory:
 
 .. code-block:: bash
 
@@ -325,11 +325,11 @@ Running the Tests
 
     If using VSCode or any other IDE, it is also possible to run the tests directly from it. Please refer to the respective software documentation for instructions on how to run the tests with CMake and the IDE.
 
-    Clesperanto project relies on a continuous integration system that runs the tests on every commit to ensure the stability of the codebase for multiple platforms (MacOS, Windows, and Ubuntu).
-    This drastically reduces the chances of bugs being introduced in the codebase and ensures that the library remains functional across different environments.
+    The CLIc project relies on a continuous integration system that runs tests on every commit to ensure codebase stability across multiple platforms (macOS, Windows, and Ubuntu).
+    This significantly reduces the chances of bugs being introduced and ensures the library remains functional across different environments.
     However, it is still recommended to run the tests locally after building the library to ensure everything is working as expected.
 
-    It is also an important step for developers who are contributing to the project. 
+    Running tests locally is also an important step for developers contributing to the project. 
 
 .. important::
 
@@ -347,4 +347,4 @@ Running the Tests
 Troubleshooting
 ---------------
 
-If you encounter issues during the build or test process that you cannot resolve or consider them bugs, please report them on the `GitHub Issues page <https://github.com/clEsperanto/CLIc/issues>`__.
+If you encounter issues during the build or test process, please report them on the `GitHub Issues page <https://github.com/clEsperanto/CLIc/issues>`__.

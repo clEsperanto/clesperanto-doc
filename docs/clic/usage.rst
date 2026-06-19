@@ -27,7 +27,7 @@ The ``cle::BackendManager::getInstance()`` function returns the singleton instan
 The ``setBackend("opencl")`` call initializes the OpenCL backend—currently the only backend available—and automatically discovers all compatible devices (GPUs, CPUs, etc.) on your system.
 If no compatible devices are found, an error is thrown.
 
-**Step 2: Initialise a Device**
+**Step 2: Initialize a Device**
 
 All GPU operations must be executed on a specific device. Before running operations, you need to select which device (GPU or CPU) to use from the backend.
 You can retrieve a device using ``getDevice()`` or ``getDeviceByIndex()`` from the backend, specifying the device name/substring and device type filter:
@@ -45,14 +45,16 @@ If you have multiple devices with the same name, identify them by index:
     auto device = cle::BackendManager::getInstance().getBackend().getDeviceByIndex(1, "gpu");
 
 
-Data transfer
+Data Transfer
 -------------
 
-**Understanding cle::Array**
+Understanding cle::Array
+^^^^^^^^^^^^^^^^^^^^^^^^
 
-``cle::Array`` represents an allocated block of memory on a GPU device. Like standard C++ containers, it has constructors and read-only accessors, but setters are intentionally limited to prevent inconsistencies between device memory and the CPU representation.
+``cle::Array`` represents an allocated block of memory on a GPU device. Like standard C++ containers, it has constructors and read-only accessors, but setters are intentionally limited to prevent inconsistencies between device memory and CPU representation.
 
-**Creating an Array**
+Creating an Array
+^^^^^^^^^^^^^^^^^
 
 To create an array on the device, provide the device reference, dimensions, data type, and memory type:
 
@@ -63,7 +65,8 @@ To create an array on the device, provide the device reference, dimensions, data
 This creates a 3D array of size 10x5x3 with ``float`` elements in device memory (similar to ``malloc()`` in C).
 The dimensions follow the convention: width, height, depth. The ``cle::mType::BUFFER`` specifies the memory layout type—see the `Array class documentation <https://clesperanto.github.io/CLIc/array.html>`__ for other memory types.
 
-**Writing Data to the Device**
+Writing Data to the Device
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 After creating the array, transfer data from your CPU to the device:
 
@@ -73,7 +76,8 @@ After creating the array, transfer data from your CPU to the device:
 
 The ``writeFrom()`` method copies data from your CPU array to the device. The source array must be a ``std::vector`` or ``std::array`` with matching size and data type.
 
-**Reading Data from the Device**
+Reading Data from the Device
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To retrieve results from the device back to your CPU:
 
@@ -83,7 +87,8 @@ To retrieve results from the device back to your CPU:
 
 The ``readTo()`` method transfers data from the device back to a CPU ``std::vector`` or ``std::array``.
 
-**Important Notes on Memory Transfers**
+Important Notes on Memory Transfers
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. note::
 
@@ -111,7 +116,8 @@ Once you have data on the device, you can execute GPU operations. Here's an exam
 This operation adds the scalar value 5 to every element in ``gpu_array`` and returns a new array with the results.
 The parameters are: the target device, the input array, an optional output array (``nullptr`` creates one automatically), and operation-specific parameters.
 
-**Memory Requirements for Operations**
+Memory Requirements for Operations
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. note::
 
@@ -125,7 +131,7 @@ The parameters are: the target device, the input array, an optional output array
 Execute a mini-pipeline
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-Combining multiple operations into a processing pipeline is straightforward. `clesperanto` is designed to facilitate chaining operations together efficiently.
+Combining multiple operations into a processing pipeline is straightforward. ``clesperanto`` is designed to facilitate chaining operations together efficiently.
 
 .. code-block:: c++
 

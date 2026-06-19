@@ -43,9 +43,9 @@ Before installing clesperantoj, ensure you have the required software installed 
 From Maven Repository (Recommended)
 ------------------------------------
 
-The easiest way to use clesperantoj is to add it as a dependency in your Maven project via the `Maven SciJava repository <https://maven.scijava.org/#nexus-search;quick~clesperantoj>`_.
+The easiest way to use clesperantoj is to add it as a dependency in your Maven project from the `Maven SciJava repository <https://maven.scijava.org/#nexus-search;quick~clesperantoj>`_.
 
-**Step 1: Add the Repository**
+**Step 1: Add SciJava Repository**
 
 If your project doesn't already include the SciJava repository, add it to your ``pom.xml``:
 
@@ -58,7 +58,7 @@ If your project doesn't already include the SciJava repository, add it to your `
         </repository>
     </repositories>
 
-**Step 2: Add the Dependency**
+**Step 2: Add clesperantoj as a Dependency**
 
 Add clesperantoj to your project dependencies in ``pom.xml``:
 
@@ -88,7 +88,7 @@ This will download clesperantoj and display your project's dependency tree.
 Building from Source
 --------------------
 
-Build from source for development, or if you need to use a platform not yet supported by Maven Central.
+Build from source for development or to use a platform not yet supported by Maven Central.
 
 **Installing Prerequisites**
 
@@ -144,38 +144,40 @@ After successful compilation, you should see:
 
 The compiled artifacts will be available in two locations:
 
-1. **Local directory**: ``target/`` folder (contains JAR file and native libraries)
-2. **Local Maven repository**: ``~/.m2/repository/net/clesperanto/clesperantoj/`` (installed for other projects to use)
+1. **Local project directory**: ``target/`` 
+2. **Local Maven repository**:
+    a. **Unix** ``~/.m2/repository/net/clesperanto/clesperantoj/``
+    b. **Windows** ``C:\Users\<YourUsername>\.m2\repository\net\clesperanto\clesperantoj\``
 
 **Building and Running Tests**
 
-It is highly possible that test does not run properly due to some environment issues. In this case it does not mean the build has failed. To build without running tests:
+Tests may not run properly due to environment issues. If this occurs, it does not mean the build has failed. To build without running tests:
 
 .. code-block:: bash
 
-    mvn clean install -DskipTests
+     mvn clean install -DskipTests
 
-Running the tests outside of Maven is the advised way to ensure everything is functioning correctly for now.
+We recommend running tests outside of Maven to verify everything is functioning correctly.
 
 
 Troubleshooting
 ---------------
 
-If you encounter issues during installation or usage that you cannot resolve or consider them bugs, please report them on the `GitHub Issues page <https://github.com/clEsperanto/clesperantoj/issues>`__.
+If you encounter issues during installation or usage, please report them on the `GitHub Issues page <https://github.com/clEsperanto/clesperantoj/issues>`__.
 
 **Maven command not found**
-    Ensure Maven's ``bin`` directory is in your ``$PATH``. Verify with ``mvn --version``.
+    Ensure Maven's ``bin`` directory is in your ``$PATH``. Check with ``mvn --version``.
 
 **CMake version too old**
     Update CMake to version 3.20 or newer. Download from `cmake.org <https://cmake.org/download/>`_.
 
 **C++ compiler not found during build**
-    On Linux, ensure you have the development tools installed (see `C++ Compiler`_ section above).
+    On Linux, ensure you have the development tools installed (see the C++ Compiler section above).
     On Windows, ensure Visual Studio Build Tools are properly installed.
 
 **Native compilation errors**
     These typically occur on unsupported platforms or with missing compiler dependencies.
-    Check your C++ compiler version supports C++17: ``g++ --version`` (Linux/macOS).
+    Verify that your C++ compiler supports C++17: ``g++ --version`` (Linux/macOS).
 
 **Dependency conflicts in Maven**
     Clear your local Maven cache and rebuild:

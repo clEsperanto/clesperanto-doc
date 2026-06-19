@@ -2,7 +2,6 @@
 ################
 
 .. todo::
-    - Proofread pyclesperanto documentation
     - make examples illustrations
     - add more examples
 

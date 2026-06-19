@@ -1,10 +1,8 @@
 API Reference
 =============
 
-The following section documents clesperantoJ API
-
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
     
     core
     converters

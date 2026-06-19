@@ -1,8 +1,5 @@
 ☕ clesperantoJ 
 ##############
-
-.. todo::
-    - Proofread clesperantoJ documentation
     
 .. toctree::
    :maxdepth: 2

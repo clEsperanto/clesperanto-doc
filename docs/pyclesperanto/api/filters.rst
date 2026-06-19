@@ -1,7 +1,7 @@
-Filters
--------
+Operations
+----------
 
-Complete list of all available filters in pyclesperanto.
+Complete list of all available operations in pyclesperanto.
 
 .. automodule:: pyclesperanto._tier1
     :members:

@@ -1,9 +1,6 @@
 🚀 CLIc 
 #######
 
-.. todo::
-    - Proofread clic documentation
-
 .. toctree::
    :maxdepth: 2
 

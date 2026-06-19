@@ -5,7 +5,7 @@ Get a device
 -------------
 
 All GPU operations must be executed on a specific device. Before running operations, you need to select which device (GPU or CPU) to use.
-clesperantoJ rely on the class `DeviceJ` and the method `getDevice()` to get a specific device.
+clesperantoJ relies on the class `DeviceJ` and the method `getDevice()` to get a specific device.
 
 .. code:: java
 
@@ -13,9 +13,7 @@ clesperantoJ rely on the class `DeviceJ` and the method `getDevice()` to get a s
 
     public class MyExampleCode {
         public static void main(String[] args) {
-            // ... some code ...
-            DeviceJ device = DeviceJ.getDefaultDevice();   // Get the default device of your system
-            // ... some code ...
+            DeviceJ device = DeviceJ.getDefaultDevice();
         }
     }
 
@@ -23,7 +21,7 @@ You can also specify the device by providing a substring to identify it and a ty
 
 .. code:: java
 
-    DeviceJ device = DeviceJ.getDevice("NVIDIA", "gpu");   // Get the first "NVIDIA" GPU device
+    DeviceJ device = DeviceJ.getDevice("NVIDIA", "gpu");
 
 
 Data transfer
@@ -47,9 +45,7 @@ We can allocate a buffer on the device using the static method `create()` of the
 
     public class MyExampleCode {
         public static void main(String[] args) {
-            // ... some code ...
-            ArrayJ array = ArrayJ.create([3, 3, 2], device, DataType.FLOAT, MemoryType.BUFFER);   // Allocate array of shape 3x3x2 on device
-            // ... some code ...        
+            ArrayJ array = ArrayJ.create([3, 3, 2], device, DataType.FLOAT, MemoryType.BUFFER);
         }
     }
 
@@ -59,7 +55,7 @@ The new ArrayJ object is, by default, empty (uninitialized data) and can be used
 Push
 ~~~~
 
-The `push` is the transfert from the host to the device. This is done using the method `writeFromArray()` of the `ArrayJ` class to write host data to a buffer on the device.
+Pushing data is the process of transferring from the host to the device. This is done using the method `writeFromArray()` of the `ArrayJ` class to write host data to a buffer on the device.
 
 .. code:: java
 
@@ -70,12 +66,11 @@ The `push` is the transfert from the host to the device. This is done using the 
 
     public class MyExampleCode {
         public static void main(String[] args) {
-            // ... some code ...
-            float data[] = new float[3 * 3 * 2];                                                    // Allocate host memory
-            data.fill(1.0f);     
-            ArrayJ array = ArrayJ.create([3, 3, 2], device, DataType.FLOAT, MemoryType.BUFFER);     // Allocate array on device
-            array.writeFromArray(data);                                                             // Write data from host to device
-            // ... some code ...        
+            float data[] = new float[3 * 3 * 2];
+            data.fill(1.0f);
+
+            ArrayJ array = ArrayJ.create([3, 3, 2], device, DataType.FLOAT, MemoryType.BUFFER);
+            array.writeFromArray(data);
         }
     }
 
@@ -84,7 +79,7 @@ The receiving ArrayJ must have been allocated ahead of time with the correct sha
 Pull
 ~~~~
 
-The `pull` is the transfert from the device to the host. This is done using the method `readToArray()` of the `ArrayJ` class to read device data to a buffer on the host.
+Pulling data is the process of transferring from the device to the host. This is done using the method `readToArray()` of the `ArrayJ` class to read device data to a buffer on the host.
 
 .. code:: java
 
@@ -95,25 +90,25 @@ The `pull` is the transfert from the device to the host. This is done using the 
 
     public class MyExampleCode {
         public static void main(String[] args) {
-            // ... some code ...
-            ArrayJ array = ArrayJ.create([3, 3, 2], device, DataType.FLOAT, MemoryType.BUFFER);     // Allocate array on device
-            // ... some code to fill the array on device ...
-            float data[] = new float[3 * 3 * 2];                                                    // Allocate host memory
-            array.readToArray(data);                                                                // Read data from device to host
-            // ... some code ...        
+            ArrayJ array = ArrayJ.create([3, 3, 2], device, DataType.FLOAT, MemoryType.BUFFER);
+
+            float data[] = new float[3 * 3 * 2];
+            array.readToArray(data);
         }
     }
 
 The receiving host array must have been allocated ahead of time with the correct size and data type.
-
+ 
 Converters
-~~~~~~~~~~ 
+~~~~~~~~~~
 
 clesperantoJ provides converters to facilitate the creation of `ArrayJ` objects from common scientific Java libraries such as ImageJ and ImgLib2.
 These converters simplify the process of transferring data between host and device by handling the necessary conversions automatically, including the device memory allocation.
 
 
-** From ImageJ and ImgLib2 to ArrayJ**
+From ImageJ and ImgLib2 to ArrayJ
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 .. code:: java
 
     import net.clesperanto.core.DeviceJ;
@@ -127,33 +122,31 @@ These converters simplify the process of transferring data between host and devi
 
     public class MyExampleCode {
         public static void main(String[] args) {
-            // ... some code ...
-            ArrayJ array1 = ImageJConverters.copyImagePlus2ToArrayJ(inputImageJ, device, MemoryType.BUFFER); // Convert ImageJ ImagePlus to ArrayJ
-            ArrayJ array2 = ImgLib2Converters.copyImgToArrayJ(inputImgLib2, device, MemoryType.BUFFER);      // Convert ImgLib2 Img<FloatType> to ArrayJ
-            // ... some code ...        
-        }
-    }
-
-** From ArrayJ to ImageJ and ImgLib2**
-.. code:: java
-
-    import net.clesperanto.core.DeviceJ;
-    import net.clesperanto.core.ArrayJ;
-    import net.clesperanto.core.MemoryType;
-    import net.clesperanto.imagej.ImageJConverters;
-    import net.clesperanto.imglib2.ImgLib2Converters;
-
-    import net.imglib2.RandomAccessibleInterval;
-    import ij.ImagePlus;
-
-    public class MyExampleCode {
-        public static void main(String[] args) {
-            // ... some code ...
-            ImagePlus outputImp = ImageJConverters.copyArrayJToImagePlus(array1);                      // Convert ArrayJ to ImageJ ImagePlus
-            RandomAccessibleInterval<FloatType> outputImg = ImgLib2Converters.copyArrayJToImg(array2); // Convert ArrayJ to ImgLib2 Img<FloatType>
-            // ... some code ...        
+            ArrayJ array1 = ImageJConverters.copyImagePlus2ToArrayJ(inputImageJ, device, MemoryType.BUFFER);
+            ArrayJ array2 = ImgLib2Converters.copyImgToArrayJ(inputImgLib2, device, MemoryType.BUFFER);
         }
     }    
+
+From ArrayJ to ImageJ and ImgLib2
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code:: java
+
+    import net.clesperanto.core.DeviceJ;
+    import net.clesperanto.core.ArrayJ;
+    import net.clesperanto.core.MemoryType;
+    import net.clesperanto.imagej.ImageJConverters;
+    import net.clesperanto.imglib2.ImgLib2Converters;
+
+    import net.imglib2.RandomAccessibleInterval;
+    import ij.ImagePlus;
+
+    public class MyExampleCode {
+        public static void main(String[] args) {
+            ImagePlus outputImp = ImageJConverters.copyArrayJToImagePlus(array1);
+            RandomAccessibleInterval<FloatType> outputImg = ImgLib2Converters.copyArrayJToImg(array2);
+        }
+    }
 
 Execute an Operation
 --------------------
@@ -170,15 +163,15 @@ They are built as static methods of operation classes, and usually take one or m
 
     public class MyExampleCode {
         public static void main(String[] args) {
-            // ... some code ...
-            ArrayJ inputArray = // ... initialize and fill input array ...
-            ArrayJ outputArray = ArrayJ.create([inputArray.width(), inputArray.height(), inputArray.depth()], device, inputArray.getDataType(), inputArray.getMemoryType());
-            Tier1.gaussian_blur(inputArray, outputArray, 2.0f, 2.0f, 2.0f); // Apply Gaussian blur with sigma 2.0
-            // ... some code ...        
+            ArrayJ inputArray = /* ... initialize and fill input array ... */
+            ArrayJ outputArray = ArrayJ.create([inputArray.width(), inputArray.height(), inputArray.depth()], 
+                                                device, inputArray.getDataType(), inputArray.getMemoryType());
+
+            Tier1.gaussian_blur(inputArray, outputArray, 2.0f, 2.0f, 2.0f);
         }
     }
 
-it is also possible to let the operation create the output ArrayJ for you. In this case, you need to pass null as the output ArrayJ.
+It is also possible to let the operation create the output ArrayJ for you. In this case, you need to pass ``null`` as the output ArrayJ.
 
 .. code:: java
 
@@ -188,15 +181,16 @@ it is also possible to let the operation create the output ArrayJ for you. In th
 
     public class MyExampleCode {
         public static void main(String[] args) {
-            // ... some code ...
-            ArrayJ inputArray = // ... initialize and fill input array ...
-            ArrayJ outputArray = Tier1.gaussian_blur(inputArray, null, 2.0f, 2.0f, 2.0f); // Apply Gaussian blur with sigma 2.0   
-            // ... some code ...        
+            ArrayJ inputArray = /* ... initialize and fill input array ... */
+            
+            ArrayJ outputArray = Tier1.gaussian_blur(inputArray, null, 2.0f, 2.0f, 2.0f);
         }
     }
 
-The example operation `gaussian_blur` is a static method of the class `Tier1` located in the package `net.clesperanto.kernels`. The package contains all the available operations organized by tiers from `1` to `8` depending on their complexity.
-This organisation is purely for management purposes and operations can be freely mixed together in your code regardless of their tier. See the :doc:`API reference <api/index>` for a full list of available operations and their respective classes.
+The example operation `gaussian_blur` is a static method of the class `Tier1` located in the package `net.clesperanto.kernels`.
+The package contains all available operations organized by tiers from `1` to `8` depending on their complexity.
+Operations can be freely mixed together in your code regardless of their tier.
+For a full list of available operations and their respective classes, see the :doc:`API reference <api/index>`.
 
 Execute a mini-pipeline
 -----------------------
@@ -214,11 +208,10 @@ By doing so, you can build efficient processing pipelines that leverage the GPU'
 
     public class MyExampleCode {
         public static void main(String[] args) {
-            // ... some code ...
-            ArrayJ inputArray = // ... initialize and fill input array ...
+            ArrayJ inputArray = /* ... initialize and fill input array ... */
+
             ArrayJ blurredArray = Tier1.gaussian_blur(inputArray, null, 2.0f, 2.0f, 2.0f);
             ArrayJ thresholdedArray = Tier4.threshold_otsu(blurredArray, null);
             ArrayJ edgeDetectedArray = Tier5.connected_component_labeling(thresholdedArray, null);
-            // ... some code ...        
         }
     }

@@ -97,7 +97,7 @@ Examples & Tutorials
 - `Labels quantifications <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/basics/label_statistics.ipynb>`_
 - `Parametrical maps <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/examples/parametric_maps.ipynb>`_
 - `Map quantifications <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/examples/map_quantification.ipynb>`_
-- `Region filtering <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/examples/regionprops_and_quantification.ipynb>`_
+.. - `Region filtering <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/examples/regionprops_and_quantification.ipynb>`_
 - `Filter nuclei by intensity <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/examples/identify_nuclei_by_intensity.ipynb>`_
 
 .. raw:: html

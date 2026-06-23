@@ -12,3 +12,4 @@
    usage
    api/index
    examples
+   migration

@@ -23,6 +23,8 @@ The GPU-accelerated Image Processing library for all!
    docs/clic/index
    docs/clesperanto/citation
    docs/clesperanto/acknowledgements
+   docs/clesperanto/benchmarking
+
 
 
 

@@ -77,66 +77,66 @@ This comes with either parameter renames, function aliases, or complete removal 
 For removal or renaming of functions, pyclesperanto provides a deprecated version of the function which should point to the new function to use instead.
 For parameter renames, pyclesperanto does not provide deprecation or overloading, so users should update their code accordingly.
 
-The following functions from pyclesperanto_prototype have been deprecated or renamed in pyclesperanto:
+The following functions from pyclesperanto_prototype have been deprecated and renamed in pyclesperanto:
 
 **Array/Buffer Creation Functions**
 
-- ``create_2d_xy``, ``create_2d_xz``, ``create_2d_yx``, ``create_2d_yz``, ``create_2d_zx``, ``create_2d_zy`` - Use ``create()`` with appropriate shape
-- ``empty_image``, ``empty_image_like`` - Use ``empty()``, ``empty_like()``, ``zeros()``, ``zeros_like()`` or ``ones()``, ``ones_like()`` instead
-- ``create_binary_like``, ``create_labels_like``, ``create_like``, ``create_same_type_like``, ``create_none``, ``create_zyx``, ``create_image`` - Use ``create()``, ``zeros()``, or ``ones()`` and other derived functions with appropriate parameters
-- ``push_zyx``, ``pull_zyx`` - Use ``push()`` and ``pull()`` and rotate/transpose as needed
+- ``create_2d_xy``, ``create_2d_xz``, ``create_2d_yx``, ``create_2d_yz``, ``create_2d_zx``, ``create_2d_zy`` → Use ``create()`` with appropriate shape
+- ``empty_image``, ``empty_image_like`` → Use ``empty()``, ``empty_like()``, ``zeros()``, ``zeros_like()`` or ``ones()``, ``ones_like()`` instead
+- ``create_binary_like``, ``create_labels_like``, ``create_like``, ``create_same_type_like``, ``create_none``, ``create_zyx``, ``create_image`` → Use ``create()``, ``zeros()``, or ``ones()`` and other derived functions with appropriate parameters
+- ``push_zyx``, ``pull_zyx`` → Use ``push()`` and ``pull()``, rotation/transpose can be perfomed before or after.
 
 **Operations**
 
-- ``cle_to_numpy`` - Use ``pull()`` or ``np.asarray()`` instead
-- ``dilate_box/sphere`` → ``dilate`` with parameter ``connectivity='box/sphere'```  
-- ``erode_box/sphere`` → ``erode`` with parameter ``connectivity='box/sphere'```  
-- ``laplace_box/diamond`` → ``laplace`` with parameter ``connectivity='box/sphere'```  
-- ``maximum_box/sphere`` → ``maximum_filter`` with parameter ``connectivity='box/sphere'```   
-- ``minimum_box/sphere`` → ``minimum_filter`` with parameter ``connectivity='box/sphere'```  
-- ``mean_box/sphere`` → ``mean_filter`` with parameter ``connectivity='box/sphere'```  
-- ``median_box/sphere`` → ``median`` with parameter ``connectivity='box/sphere'```  
-- ``mode_box/sphere`` → ``mode`` with parameter ``connectivity='box/sphere'```  
-- ``nonzero_maximum_box/diamond`` → ``nonzero_maximum`` with parameter ``connectivity='box/sphere'```  
-- ``nonzero_minimum_box/diamond`` → ``nonzero_minimum`` with parameter ``connectivity='box/sphere'```  
-- ``onlyzero_overwrite_maximum_box/diamond`` → ``onlyzero_overwrite_maximum`` with parameter ``connectivity='box/sphere'```  
-- ``variance_box/sphere`` → ``variance`` with parameter ``connectivity='box/sphere'```  
-- ``bottom_hat_box/sphere`` → ``bottom_hat`` with parameter ``connectivity='box/sphere'```  
-- ``closing_box/sphere`` → ``closing`` with parameter ``connectivity='box/sphere'```  
-- ``opening_box/sphere`` → ``opening`` with parameter ``connectivity='box/sphere'```  
-- ``top_hat_box/sphere`` → ``top_hat`` with parameter ``connectivity='box/sphere'```  
-- ``detect_maxima_box`` → ``detect_maxima`` with parameter ``connectivity='box/sphere'```  
-- ``detect_minima_box`` → ``detect_minima`` with parameter ``connectivity='box/sphere'```  
-- ``standard_deviation_box/sphere`` → ``standard_deviation`` with parameter ``connectivity='box/sphere'```  
-- ``average_distance_touching_neighbors`` → ``mean_distance_touching_neighbors``
-- ``average_distance_of_n_nearest_distances`` → ``mean_distance_n_nearest_neighbors``
-- ``average_distance_of_n_far_off_distances`` → ``mean_distance_n_farthest_neighbors``
-- ``generate_touch_portion_within_range_neighbors_matrix`` → ``generate_partial_touching_area_matrix_within_range``
-- ``replace_intensity`` → ``replace_value``
-- ``replace_intensities`` → ``replace_values``
-- ``generate_touch_count_matrix`` → ``generate_touch_matrix``
-- ``read_intensities_from_map`` → ``read_map_values``
-- ``statistics_of_labelled_pixels`` and ``statistics_of_background_and_labelled_pixels`` → ``labels_statistics`` with parameter ``include_background=True/False``
-- ``statistics_of_labelled_neighbors`` → ``statistics_of_neighbor_labels`` with parameter ``include_background=True/False``
-- ``exclude_labels_with_map_values_out_of_range`` → ``remove_labels_with_map_values_out_of_range``
-- ``exclude_labels_with_map_values_within_range`` → ``remove_labels_with_map_values_within_range``
-- ``generate_touch_portion_matrix`` → ``generate_partial_touching_area_matrix``
-- ``standard_deviation_touch_portion`` → ``standard_deviation_partial_touching_area_matrix``
-- ``label_mean_intensity_map`` → ``mean_intensity_map``
-- ``label_pixel_count_map`` → ``pixel_count_map``
-- ``connected_components_labeling`` → ``connected_component_labeling``
-- ``connected_components_labeling_box`` and ``connected_components_labeling_diamond`` → ``connected_component_labeling`` with parameter ``connectivity='box/sphere'``
-- ``combine_horizontally`` and ``combine_vertically`` → ``concatenate_along_x`` and ``concatenate_along_y``
-- ``concatenate_stacks`` → ``concatenate_along_z``
+- ``cle_to_numpy`` → Use ``pull()`` or ``np.asarray()`` instead
+- ``dilate_box/sphere`` → Renamed ``dilate`` with parameter ``connectivity='box/sphere'```  
+- ``erode_box/sphere`` → Renamed ``erode`` with parameter ``connectivity='box/sphere'```  
+- ``laplace_box/diamond`` → Renamed ``laplace`` with parameter ``connectivity='box/sphere'```  
+- ``maximum_box/sphere`` → Renamed ``maximum_filter`` with parameter ``connectivity='box/sphere'```   
+- ``minimum_box/sphere`` → Renamed ``minimum_filter`` with parameter ``connectivity='box/sphere'```  
+- ``mean_box/sphere`` → Renamed ``mean_filter`` with parameter ``connectivity='box/sphere'```  
+- ``median_box/sphere`` → Renamed ``median`` with parameter ``connectivity='box/sphere'```  
+- ``mode_box/sphere`` → Renamed ``mode`` with parameter ``connectivity='box/sphere'```  
+- ``nonzero_maximum_box/diamond`` → Renamed ``nonzero_maximum`` with parameter ``connectivity='box/sphere'```  
+- ``nonzero_minimum_box/diamond`` → Renamed ``nonzero_minimum`` with parameter ``connectivity='box/sphere'```  
+- ``onlyzero_overwrite_maximum_box/diamond`` → Renamed ``onlyzero_overwrite_maximum`` with parameter ``connectivity='box/sphere'```  
+- ``variance_box/sphere`` → Renamed ``variance`` with parameter ``connectivity='box/sphere'```  
+- ``bottom_hat_box/sphere`` → Renamed ``bottom_hat`` with parameter ``connectivity='box/sphere'```  
+- ``closing_box/sphere`` → Renamed ``closing`` with parameter ``connectivity='box/sphere'```  
+- ``opening_box/sphere`` → Renamed ``opening`` with parameter ``connectivity='box/sphere'```  
+- ``top_hat_box/sphere`` → Renamed ``top_hat`` with parameter ``connectivity='box/sphere'```  
+- ``detect_maxima_box`` → Renamed ``detect_maxima`` with parameter ``connectivity='box/sphere'```  
+- ``detect_minima_box`` → Renamed ``detect_minima`` with parameter ``connectivity='box/sphere'```  
+- ``standard_deviation_box/sphere`` → Renamed ``standard_deviation`` with parameter ``connectivity='box/sphere'```  
+- ``average_distance_touching_neighbors`` → Renamed ``mean_distance_touching_neighbors``
+- ``average_distance_of_n_nearest_distances`` → Renamed ``mean_distance_n_nearest_neighbors``
+- ``average_distance_of_n_far_off_distances`` → Renamed ``mean_distance_n_farthest_neighbors``
+- ``generate_touch_portion_within_range_neighbors_matrix`` → Renamed ``generate_partial_touching_area_matrix_within_range``
+- ``replace_intensity`` → Renamed ``replace_value``
+- ``replace_intensities`` → Renamed ``replace_values``
+- ``generate_touch_count_matrix`` → Renamed ``generate_touch_matrix``
+- ``read_intensities_from_map`` → Renamed ``read_map_values``
+- ``statistics_of_labelled_pixels`` and ``statistics_of_background_and_labelled_pixels`` → Renamed ``labels_statistics`` with parameter ``include_background=True/False``
+- ``statistics_of_labelled_neighbors`` → Renamed ``statistics_of_neighbor_labels`` with parameter ``include_background=True/False``
+- ``exclude_labels_with_map_values_out_of_range`` → Renamed ``remove_labels_with_map_values_out_of_range``
+- ``exclude_labels_with_map_values_within_range`` → Renamed ``remove_labels_with_map_values_within_range``
+- ``generate_touch_portion_matrix`` → Renamed ``generate_partial_touching_area_matrix``
+- ``standard_deviation_touch_portion`` → Renamed ``standard_deviation_partial_touching_area_matrix``
+- ``label_mean_intensity_map`` → Renamed ``mean_intensity_map``
+- ``label_pixel_count_map`` → Renamed ``pixel_count_map``
+- ``connected_components_labeling`` → Renamed ``connected_component_labeling``
+- ``connected_components_labeling_box`` and ``connected_components_labeling_diamond`` → Renamed ``connected_component_labeling`` with parameter ``connectivity='box/sphere'``
+- ``combine_horizontally`` and ``combine_vertically`` → Renamed ``concatenate_along_x`` and ``concatenate_along_y``
+- ``concatenate_stacks`` → Renamed ``concatenate_along_z`` to match ``concatenate_along_x`` and ``concatenate_along_y``
 
 **Utility Functions**
 
-- ``set_wait_for_kernel_finish`` → ``wait_for_kernel_to_finish``
-- ``cl_info`` → ``info``
-- ``available_device_names`` → ``list_available_devices``
-- ``draw_box``, ``draw_line``, ``draw_sphere`` - Drawing functions are not implemented as pyclesperanto is not intended for visualization; use other libraries for drawing.
-- ``imread`` - Not implemented; use other libraries for image loading such as ``scikit-image`` or ``bioio``.
-- ``imshow`` - Still works but not recommended; use other libraries for visualization such as ``matplotlib`` or ``napari`` for proper visualization.
+- ``set_wait_for_kernel_finish`` → Renamed ``wait_for_kernel_to_finish``
+- ``cl_info`` → Renamed ``info``
+- ``available_device_names`` → Renamed ``list_available_devices``
+- ``draw_box``, ``draw_line``, ``draw_sphere`` → Not implemented;
+- ``imread`` → Not implemented;
+- ``imshow`` → Prefer ``matplotlib`` or ``napari`` for proper visualization. Will mostlikely be deprecated in future.
 
 New Functions in pyclesperanto
 ------------------------------
@@ -170,49 +170,10 @@ These provide additional functionality and improved consistency:
 It also introduce the ``evaluate`` function, which allows to combine multiple element-wise operations in a single mathematical expression, improving performance by reducing kernel launches.
 This is particularly useful for arythmetic operations. See the documentation for more details on how to use ``evaluate()``.
 
-Troubleshooting Common Migration Issues
---------------------------------------
-
-**Issue: Function not found error**
-
-If you encounter ``AttributeError`` for a function that existed in pyclesperanto_prototype, it is most likely due to a function rename, removal, or a parameter change.
-To resolve this:
-
-1. Check if the function is available
-    a. If it is the correct function, verify if the parameters have changed
-2. If the function is not available, search for a similar function in the library
-    a. Using keywords from the function name may help find a similar function, e.g. ``cle.dilate_box`` you can search for ``dilate``.
-    b. Check the list in this documentation, though it may not be exhaustive
-3. Do not hesitate to file an issue on GitHub if you could not find a replacement function or if you think the function should be added back to pyclesperanto.
-
-**Issue: Parameter not recognized**
-
-If function parameters have changed:
-
-1. Check the function's docstring: ``help(cle.your_function)`` or ``cle.your_function.__doc__`` or ``cle.your_function?`` in Jupyter Notebook
-2. Review parameter renames section above
-3. Some functions may have changed their parameter order or name
-
-**Issue: Backend not available**
-
-If you get a runtime error about no backend:
-
-1. Install a backend: ``pip install pyclesperanto[opencl]``
-2. Select the backend explicitly: ``cle.select_backend("opencl")``
-3. Check available backends: ``cle.list_available_backends()``
-
-**Issue: Device selection different**
-
-The new device management is more explicit:
-
-1. List devices: ``cle.list_available_devices()``
-2. Select device: ``cle.select_device(device)``
-3. Devices are passed to functions or used in context
-
 Resources
 ---------
 
 - `pyclesperanto GitHub Repository <https://github.com/clEsperanto/pyclesperanto>`_
 - `pyclesperanto Documentation <https://clesperanto-doc.readthedocs.io/>`_
 
-For additional help with specific functions, refer to the official pyclesperanto documentation and the function docstrings.
+For additional help with specific functions, refer to the latest pyclesperanto documentation and API reference.

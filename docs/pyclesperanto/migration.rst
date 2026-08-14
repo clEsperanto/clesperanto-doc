@@ -73,8 +73,8 @@ Function API changes
 For consistency and clarity, several functions from `pyclesperanto_prototype` have been renamed or consolidated in `pyclesperanto`.
 This comes with either parameter renames, function aliases, or complete removal of certain functions.
 
-To help you navigate these changes as you migrate your code, we have created a comprehensive list of function changes:
+To help you navigate these changes as you migrate your code, we have created a comprehensive list of function changes, see:
 
-- `https://github.com/clEsperanto/pyclesperanto-transition-notes/blob/main/transition_notes.md`_.
+- `Transition Notes <https://github.com/clEsperanto/pyclesperanto-transition-notes/blob/main/transition_notes.md>`_.
 
 If you still have questions or need assistance with specific functions, or that you notice any discrepancies in the transition notes, please reach out to us via GitHub issues.

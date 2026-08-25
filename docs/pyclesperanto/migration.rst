@@ -1,5 +1,5 @@
-`prototype` migration guide
-===========================
+`prototype` migration
+=====================
 
 This guide helps users migrate from `pyclesperanto_prototype <https://github.com/clEsperanto/pyclesperanto_prototype>`_ to the current `pyclesperanto <https://github.com/clEsperanto/pyclesperanto>`_ version.
 
@@ -39,18 +39,22 @@ Key Architectural Changes
         
         # Select backend at runtime
         import pyclesperanto as cle
+        cle.list_available_backends()
+        > ['opencl', 'cuda', 'metal']
         cle.select_backend("opencl")  # or "cuda", "metal"
 
-    OpenCL is the default backend if no selection is made.
+    OpenCL is the default backend that is always available.
 
 3. **Device Management**
 
     Both versions support device management in a similar way::
     
-        device = cle.get_device()
+        cle.list_available_devices()
+        > ['Intel(R) UHD Graphics 630', 'NVIDIA GeForce RTX 3090', 'Apple M1 Pro']
+        device = cle.get_device() # Return the current selected device
         cle.select_device(device)
         
-    The Device object can now be passed to functions for multi-device processing.
+    The Device object can now be passed to functions for multi-device processing and can also be selected by index.
 
 4. **Array/Image Creation**
 
@@ -67,14 +71,15 @@ Key Architectural Changes
        numpy_array = image.get()
        numpy_array = np.asarray(image)
 
+    ``pyclesperanto.Array`` try to follow the NumPy API as much as possible, with some limitations due to implementation and GPU limitations.
+
+
 Function API changes
 --------------------
 
-For consistency and clarity, several functions from `pyclesperanto_prototype` have been renamed or consolidated in `pyclesperanto`.
-This comes with either parameter renames, function aliases, or complete removal of certain functions.
+Although we try to keep as much as possible the same API, several functions from `pyclesperanto_prototype` have been renamed in `pyclesperanto` for better consistency and clarity.
+In a vast majority of cases, we kept a legacy function which should now be tagged as deprecated and with a warning message to redirect you to the function to replace it with. 
 
-To help you navigate these changes as you migrate your code, we have created a comprehensive list of function changes, see:
-
-- `Transition Notes <https://github.com/clEsperanto/pyclesperanto-transition-notes/blob/main/transition_notes.md>`_.
+In addition, to assist people in the transition, we have created an autoamtic correspondance notes between the two versions, which can be found in the `Transition Notes repository <https://github.com/clEsperanto/pyclesperanto-transition-notes/blob/main/transition_notes.md>`_.
 
 If you still have questions or need assistance with specific functions, or that you notice any discrepancies in the transition notes, please reach out to us via GitHub issues.

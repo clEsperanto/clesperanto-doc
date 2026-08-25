@@ -1,10 +1,6 @@
 🐍 pyclesperanto 
 ################
 
-.. todo::
-    - make examples illustrations
-    - add more examples
-
 .. toctree::
    :maxdepth: 2
 
@@ -12,4 +8,3 @@
    usage
    api/index
    examples
-   migration

@@ -6,7 +6,7 @@
 Welcome to clEsperanto!
 =======================
 
-The GPU-accelerated Image Processing library for all!
+The GPU-accelerated Image Processing library for _all_!
 
 .. include:: docs/clesperanto/intro.rst
 .. include:: docs/clesperanto/citation.rst
@@ -23,9 +23,15 @@ The GPU-accelerated Image Processing library for all!
    docs/clic/index
    docs/clesperanto/citation
    docs/clesperanto/acknowledgements
-   docs/clesperanto/benchmarking
 
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Extras:
+   :hidden:
+
+   docs/clesperanto/benchmark
+   docs/pyclesperanto/migration
 
 
 .. todolist::

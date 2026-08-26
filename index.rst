@@ -6,7 +6,7 @@
 Welcome to clEsperanto!
 =======================
 
-The GPU-accelerated Image Processing library for _all_!
+The GPU-accelerated Image Processing library for **all**!
 
 .. include:: docs/clesperanto/intro.rst
 .. include:: docs/clesperanto/citation.rst

@@ -10,7 +10,7 @@ Overview
     Each API exposes the same set of GPU-accelerated image processing functions and shares the same underlying C++ codebase.
 
     The project relies on `OpenCL <https://www.khronos.org/opencl/>`_ to ensure compatibility with a wide range of GPU hardware from different vendors (NVIDIA, AMD, Intel, etc.) and different device types (dedicated graphics cards, integrated GPUs, and even some CPUs).
-    It also provides additional support for other frameworks such as `CUDA <https://developer.nvidia.com/cuda-zone>`_ and `Metal <https://developer.apple.com/metal/>`_ to allow direct integration with other libraries and maximize adaptability to different environments.
+    It also provides additional support for other GPU frameworks such as `CUDA <https://developer.nvidia.com/cuda-zone>`_ and `Metal <https://developer.apple.com/metal/>`_ to allow direct integration with other libraries and maximize adaptability to different environments.
 
 The core-repository APIs consist of the following repositories:
 

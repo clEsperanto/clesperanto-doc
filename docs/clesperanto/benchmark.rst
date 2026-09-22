@@ -5,7 +5,7 @@ Benchmarking was done with the Python version of clesperanto, as it is the easie
 We compared the performance of clesperanto, with its different backends, to the performance of the NumPy (CPU) and CuPy (GPU) libraries.
 The goal is not to compete, but to evaluate the performance of clesperanto against state-of-the-art libraries and to provide a reference for users choosing the best backend for their needs.
 
-The benchmark was designed based on the benchmarking approach used by CuPy (https://cupy.dev/) and is available `here <https://github.com/clesperanto/clesperanto/tree/main/benchmarks>`__.
+The benchmark was designed and adapted from the benchmarking approach used by CuPy (https://cupy.dev/) and is available `here <https://github.com/clesperanto/clesperanto/tree/main/benchmarks>`__.
 It was run on a small (128MB) and a large (2GB) 3D array. Each operation was run multiple times and the average time was taken.
 
 .. container:: figure-centered
@@ -18,21 +18,21 @@ It was run on a small (128MB) and a large (2GB) 3D array. Each operation was run
         :alt: benchmarking results for 2GB 3D array
         :width: 90%
 
+Notes: 
 
-Additional information: 
-- CuPy Matrix multiplication rely on the ``cuBLAS`` library, which is highly optimized for NVIDIA GPUs. OpenCL implementations will not be able to compete with this performance (https://cnugteren.github.io/tutorial/pages/page1.html) 
-- Slicing operations in CuPy can rely on views, which are very fast. pyclesperanto only supports views for continuous slices.
+- CuPy Matrix multiplication rely on the ``cuBLAS`` library, which is highly optimized. OpenCL implementations will not be able to compete (https://cnugteren.github.io/tutorial/pages/page1.html) 
+- Slicing operations in CuPy relies on views, avoiding copying of data, which can explain high performance differences.
 
 Operations details
 ==================
 
 - Simple element-wise operations: Simple addition of an array with a scalar
-- Complex element-wise operations: Element-wise mathematical equation between two arrays involving several operators (power, cosine, sine)
-- Simple reduction operations: Sum reduction of all elements in an array
-- Complex reduction operations: Standard deviation reduction of all elements in an array
-- `Convolution operations <https://en.wikipedia.org/wiki/Convolution>`_: Euclidean convolution of an array with a kernel of radius 7
+- Complex element-wise operations: Equation between two arrays involving expensives operators (power, cosine, sine)
+- Simple reduction operations: Sum reduction of all elements in an array into a scalar
+- Complex reduction operations: Standard deviation reduction of all elements in an array into a scalar
+- `Convolution operations <https://en.wikipedia.org/wiki/Convolution>`_: Euclidean convolution of an array with a array kernel of radius 7
 - `Advanced convolution operations <https://en.wikipedia.org/wiki/Convolution>`_: Gaussian separable convolution of an array with sigma 7
-- `Matrix multiplication <https://en.wikipedia.org/wiki/Matrix_multiplication>`_: Matrix multiplication of two 2D arrays (only the first ``yx`` slice of the 3D array is used)
+- `Matrix multiplication <https://en.wikipedia.org/wiki/Matrix_multiplication>`_: Matrix multiplication of two 2D arrays (only the first slice is used)
 - Strided array slicing: Accessing a non-continuous part of an array
 - `Fast Fourier Transform <https://en.wikipedia.org/wiki/Fast_Fourier_transform>`_: Applying a FFT on an array
 

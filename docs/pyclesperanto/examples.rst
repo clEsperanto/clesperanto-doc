@@ -17,7 +17,7 @@ Examples & Tutorials
 - `Select a Backend <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/api/manage_backends.ipynb>`_
 - `Choose a devices <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/api/select_devices.ipynb>`_
 - `Host-Device memory transfer <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/api/push_pull_create.ipynb>`_
-- `Process an array <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/api/process_image.ipynb>`_
+- `Process a Device array <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/api/process_image.ipynb>`_
 
 .. raw:: html
 
@@ -54,7 +54,7 @@ Examples & Tutorials
          <div class="example-card-content">
 
 - `Histogram correction <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/examples/histogram_and_clahe.ipynb>`_
-.. - `Denoising filters <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/examples/denoising_filters.ipynb>`_
+- `Denoising filters <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/examples/denoising_filters.ipynb>`_
 - `Thresholding <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/examples/thresholding.ipynb>`_
 - `Spot detection <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/examples/spot_detection.ipynb>`_
 - `Template matching detection <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/examples/template_matching_detection.ipynb>`_
@@ -76,9 +76,9 @@ Examples & Tutorials
          <div class="example-card-content">
 
 - `Voronoi-Otsu segmentation <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/examples/voronoi_otsu_labeling.ipynb>`_
+- `Chan-Vese segmentation <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/examples/chan_vese_segmentation.ipynb>`_
 - `Membrane segmentation <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/examples/membrane_segmentation_2d.ipynb>`_
 - `3D nuclei segmentation <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/examples/Segmentation_3D.ipynb>`_
-- `Chan-Vese segmentation <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/examples/chan_vese_segmentation.ipynb>`_
 
 .. raw:: html
 
@@ -96,7 +96,7 @@ Examples & Tutorials
          <div class="example-card-content">
 
 - `Labels quantifications <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/basics/label_statistics.ipynb>`_
-- `Parametrical maps <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/examples/parametric_maps.ipynb>`_
+- `Parametric maps <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/examples/parametric_maps.ipynb>`_
 - `Map quantifications <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/examples/map_quantification.ipynb>`_
 - `Filter nuclei by intensity <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/examples/identify_nuclei_by_intensity.ipynb>`_
 

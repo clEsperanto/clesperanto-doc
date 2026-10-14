@@ -10,3 +10,6 @@ _submodules/**
 # system files
 .DS_Store
 Thumbs.db
+
+# pixi
+.pixi

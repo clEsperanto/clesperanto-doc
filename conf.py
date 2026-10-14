@@ -40,8 +40,25 @@ def parse_version():
     return common_version
 
 
+def parse_repo_tag(repo):
+    # read the file ".readthedocs.yaml" and find the tag cloned for a given repository
+    with open(".readthedocs.yaml", "r") as f:
+        content = f.read()
+    match = re.search(rf"git clone -b (\S+) .*/{repo}\.git", content)
+    return match.group(1) if match else "main"
+
+
+pyclesperanto_tag = parse_repo_tag("pyclesperanto")
+
+
+def replace_version_placeholders(app, docname, source):
+    # roles and substitutions are not processed in raw html blocks, so we replace placeholders directly
+    source[0] = source[0].replace("{{ pyclesperanto_tag }}", pyclesperanto_tag)
+
+
 def setup(app):
     app.add_css_file('custom.css')
+    app.connect('source-read', replace_version_placeholders)
 
 year = time.localtime().tm_year
 
@@ -74,6 +91,13 @@ templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', '.pixi', '_submodules']
 
 todo_include_todos = True
+
+# -- External links (version dependent) ----------------------------------------
+# usage: :pycle-demo:`Link title <api/select_devices.ipynb>`
+
+extlinks = {
+    'pycle-demo': (f'https://github.com/clEsperanto/pyclesperanto/blob/{pyclesperanto_tag}/docs/demos/%s', '%s'),
+}
 
 # -- pyclesperanto auto-documentation ----------------------------------------
 from unittest.mock import MagicMock

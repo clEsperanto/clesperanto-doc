@@ -10,14 +10,14 @@ Examples & Tutorials
 
        <div class="example-card">
          <div class="example-card-image">
-           <img src="https://github.com/clEsperanto/pyclesperanto/blob/main/docs/demos/images/select_device.png?raw=true" alt="Select and Manage devices">
+           <img src="https://github.com/clEsperanto/pyclesperanto/blob/{{ pyclesperanto_tag }}/docs/demos/images/select_device.png?raw=true" alt="Select and Manage devices">
          </div>
          <div class="example-card-content">
 
-- `Select a Backend <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/api/manage_backends.ipynb>`_
-- `Choose a devices <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/api/select_devices.ipynb>`_
-- `Host-Device memory transfer <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/api/push_pull_create.ipynb>`_
-- `Process a Device array <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/api/process_image.ipynb>`_
+- :pycle-demo:`Select a Backend <api/manage_backends.ipynb>`
+- :pycle-demo:`Choose a devices <api/select_devices.ipynb>`
+- :pycle-demo:`Host-Device memory transfer <api/push_pull_create.ipynb>`
+- :pycle-demo:`Process a Device array <api/process_image.ipynb>`
 
 .. raw:: html
 
@@ -30,13 +30,13 @@ Examples & Tutorials
 
        <div class="example-card">
          <div class="example-card-image">
-           <img src="https://github.com/clEsperanto/pyclesperanto/blob/main/docs/demos/images/crop_and_paste_images.png?raw=true" alt="Array operations">
+           <img src="https://github.com/clEsperanto/pyclesperanto/blob/{{ pyclesperanto_tag }}/docs/demos/images/crop_and_paste_images.png?raw=true" alt="Array operations">
          </div>
          <div class="example-card-content">
 
-- `Arrays manipulation <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/basics/array_manipulation.ipynb>`_
-- `Arrays arithmetics <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/basics/array_arithmetics.ipynb>`_
-- `Matrix arithmetics <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/basics/matrix_operations.ipynb>`_
+- :pycle-demo:`Arrays manipulation <basics/array_manipulation.ipynb>`
+- :pycle-demo:`Arrays arithmetics <basics/array_arithmetics.ipynb>`
+- :pycle-demo:`Matrix arithmetics <basics/matrix_operations.ipynb>`
 
 .. raw:: html
 
@@ -49,16 +49,16 @@ Examples & Tutorials
 
        <div class="example-card">
          <div class="example-card-image">
-           <img src="https://github.com/clEsperanto/pyclesperanto/blob/main/docs/demos/images/clahe.png?raw=true" alt="Filtering and detection">
+           <img src="https://github.com/clEsperanto/pyclesperanto/blob/{{ pyclesperanto_tag }}/docs/demos/images/clahe.png?raw=true" alt="Filtering and detection">
          </div>
          <div class="example-card-content">
 
-- `Histogram correction <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/examples/histogram_and_clahe.ipynb>`_
-- `Denoising filters <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/examples/denoising_filters.ipynb>`_
-- `Thresholding <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/examples/thresholding.ipynb>`_
-- `Spot detection <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/examples/spot_detection.ipynb>`_
-- `Template matching detection <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/examples/template_matching_detection.ipynb>`_
-- `Edge and Ridge filtering <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/examples/edge_and_ridge_filters.ipynb>`_
+- :pycle-demo:`Histogram correction <examples/histogram_and_clahe.ipynb>`
+- :pycle-demo:`Denoising filters <examples/denoising_filters.ipynb>`
+- :pycle-demo:`Thresholding <examples/thresholding.ipynb>`
+- :pycle-demo:`Spot detection <examples/spot_detection.ipynb>`
+- :pycle-demo:`Template matching detection <examples/template_matching_detection.ipynb>`
+- :pycle-demo:`Edge and Ridge filtering <examples/edge_and_ridge_filters.ipynb>`
 
 .. raw:: html
 
@@ -71,14 +71,14 @@ Examples & Tutorials
 
        <div class="example-card">
          <div class="example-card-image">
-           <img src="https://github.com/clEsperanto/pyclesperanto/blob/main/docs/demos/images/segmentation_3d.png?raw=true" alt="Segmentation">
+           <img src="https://github.com/clEsperanto/pyclesperanto/blob/{{ pyclesperanto_tag }}/docs/demos/images/segmentation_3d.png?raw=true" alt="Segmentation">
          </div>
          <div class="example-card-content">
 
-- `Voronoi-Otsu segmentation <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/examples/voronoi_otsu_labeling.ipynb>`_
-- `Chan-Vese segmentation <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/examples/chan_vese_segmentation.ipynb>`_
-- `Membrane segmentation <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/examples/membrane_segmentation_2d.ipynb>`_
-- `3D nuclei segmentation <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/examples/Segmentation_3D.ipynb>`_
+- :pycle-demo:`Voronoi-Otsu segmentation <examples/voronoi_otsu_labeling.ipynb>`
+- :pycle-demo:`Chan-Vese segmentation <examples/chan_vese_segmentation.ipynb>`
+- :pycle-demo:`Membrane segmentation <examples/membrane_segmentation_2d.ipynb>`
+- :pycle-demo:`3D nuclei segmentation <examples/segmentation_3d.ipynb>`
 
 .. raw:: html
 
@@ -91,14 +91,14 @@ Examples & Tutorials
 
        <div class="example-card">
          <div class="example-card-image">
-           <img src="https://github.com/clEsperanto/pyclesperanto/blob/main/docs/demos/images/maps.png?raw=true" alt="Quantification and measurements">
+           <img src="https://github.com/clEsperanto/pyclesperanto/blob/{{ pyclesperanto_tag }}/docs/demos/images/maps.png?raw=true" alt="Quantification and measurements">
          </div>
          <div class="example-card-content">
 
-- `Labels quantifications <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/basics/label_statistics.ipynb>`_
-- `Parametric maps <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/examples/parametric_maps.ipynb>`_
-- `Map quantifications <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/examples/map_quantification.ipynb>`_
-- `Filter nuclei by intensity <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/examples/identify_nuclei_by_intensity.ipynb>`_
+- :pycle-demo:`Labels quantifications <basics/label_statistics.ipynb>`
+- :pycle-demo:`Parametric maps <examples/parametric_maps.ipynb>`
+- :pycle-demo:`Map quantifications <examples/map_quantification.ipynb>`
+- :pycle-demo:`Filter nuclei by intensity <examples/identify_nuclei_by_intensity.ipynb>`
 
 .. raw:: html
 
@@ -111,13 +111,13 @@ Examples & Tutorials
 
        <div class="example-card">
          <div class="example-card-image">
-           <img src="https://github.com/clEsperanto/pyclesperanto/blob/main/docs/demos/images/multi-device-tiling.png?raw=true" alt="Advanced operations">
+           <img src="https://github.com/clEsperanto/pyclesperanto/blob/{{ pyclesperanto_tag }}/docs/demos/images/multi-device-tiling.png?raw=true" alt="Advanced operations">
          </div>
          <div class="example-card-content">
 
-- `Image transformation <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/examples/affine_transforms.ipynb>`_
-- `FFT Convolution and Deconvolution <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/examples/image_deconvolution.ipynb>`_
-- `Multi-GPU and tile processing with Dask <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/examples/multi-gpu_tile_processing_with_dask.ipynb>`_
+- :pycle-demo:`Image transformation <examples/image_affine_transforms.ipynb>`
+- :pycle-demo:`FFT Convolution and Deconvolution <examples/image_deconvolution.ipynb>`
+- :pycle-demo:`Multi-GPU and tile processing with Dask <examples/multi-gpu_tile_processing_with_dask.ipynb>`
 
 .. raw:: html
 
@@ -130,13 +130,13 @@ Examples & Tutorials
 
        <div class="example-card">
          <div class="example-card-image">
-           <img src="https://github.com/clEsperanto/pyclesperanto/blob/main/docs/demos/images/multi-device-tiling.png?raw=true" alt="Interoperabilities">
+           <img src="https://github.com/clEsperanto/pyclesperanto/blob/{{ pyclesperanto_tag }}/docs/demos/images/multi-device-tiling.png?raw=true" alt="Interoperabilities">
          </div>
          <div class="example-card-content">
 
-- `Numpy <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/interoperability/numpy.ipynb>`_
-- `Cupy and Torch <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/interoperability/cupy_torch.ipynb>`_
-- `Ask Bia-Bob <https://github.com/clEsperanto/pyclesperanto/tree/main/docs/demos/interoperability/biabob-example.ipynb>`_
+- :pycle-demo:`Numpy <interoperability/numpy.ipynb>`
+- :pycle-demo:`Cupy and Torch <interoperability/cupy_torch.ipynb>`
+- :pycle-demo:`Ask Bia-Bob <interoperability/biabob-example.ipynb>`
 
 .. raw:: html
 

@@ -1,6 +1,10 @@
-API Documentation
-=================
+API Reference
+=============
 
-.. toc-tree::
+.. toctree::
     :maxdepth: 1
     
+    core
+    converters
+    kernels
+

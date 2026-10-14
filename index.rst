@@ -6,44 +6,32 @@
 Welcome to clEsperanto!
 =======================
 
-The GPU-accelerated Image Processing library for all!
+The GPU-accelerated Image Processing library for **all**!
+
+.. include:: docs/clesperanto/intro.rst
+.. include:: docs/clesperanto/citation.rst
+.. include:: docs/clesperanto/acknowledgements.rst
 
 .. toctree::
    :maxdepth: 2
+   :caption: Contents:
+   :hidden:
 
-   docs/clesperanto/index
+   docs/clesperanto/intro
+   docs/pyclesperanto/index
+   docs/clesperantoj/index
+   docs/clic/index
+   docs/clesperanto/citation
+   docs/clesperanto/acknowledgements
 
-________________
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Extras:
+   :hidden:
 
-.. container:: toctree-columns
+   docs/clesperanto/benchmark
+   docs/pyclesperanto/migration
 
-   .. toctree::
-      :maxdepth: 2
-      :class: red-caption
-
-      docs/clesperantoj/index
-
-   .. toctree::
-      :maxdepth: 2
-      :class: green-caption
-
-      docs/pyclesperanto/index
-
-   .. toctree::
-      :maxdepth: 2
-      :class: blue-caption
-
-      docs/clic/index
-
-________________
 
 .. todolist::
-
-
-.. Indices and tables
-.. ==================
-
-.. * :ref:`genindex`
-.. * :ref:`modindex`
-.. * :ref:`search`

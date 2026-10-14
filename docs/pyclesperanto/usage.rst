@@ -1,5 +1,5 @@
-Usage
-=====
+How to use
+==========
 
 pyClesperanto is a GPU-accelerated image processing library for Python. To get started, import the library:
 
@@ -9,23 +9,44 @@ pyClesperanto is a GPU-accelerated image processing library for Python. To get s
 
 .. warning::
 
-    If you encounter an error at this stage, it is likely that the OpenCL driver is not installed or that you do not have an OpenCL-compatible device.
-    Please check the installation of OpenCL and drivers, as well as the compatibility of your system devices with OpenCL.
+    If you encounter an error at this stage, the OpenCL driver is likely not installed or your device is not OpenCL-compatible.
+    Please check the OpenCL installation and driver compatibility with your system, or install a different backend (e.g., CUDA) if your device supports it. See :doc:`installation instructions <install>` for more details.
 
-Next, you can explore the devices available on your computer using the `list_available_devices()` function or get more detailed information with the `info()` function:
+
+Backends and devices
+--------------------
+
+By default, ``pyclesperanto`` uses ``OpenCL`` as a backend, which is automatically selected at import time along with the first available device on your system.
+If you installed other backends (e.g., ``CUDA``), you can switch to them with the ``select_backend()`` function:
+
+.. code:: python
+
+    # Select the CUDA backend
+    cle.select_backend("CUDA")
+
+.. warning::
+
+    Switching backends will break all existing GPU arrays and operations done with the previous backend. 
+    This command should be used only at the beginning of your code before any operation is performed otherwise you may encounter unexpected errors or behavior.
+
+Once a backend is selected, you can query the available devices with ``cle.list_available_devices()`` or get a more detailed list of your devices with ``cle.info()``. 
 
 .. code:: python
 
     # Return the name of all available devices on the computer
     print(cle.list_available_devices())
 
-    # Return the name, index, and information on all the devices
+    # Return the name, index, and information on all the available devices
     print(cle.info())
 
+.. note::
+    
+    You may not see the same devices between backends. For example, ``CUDA`` will only show NVIDIA GPUs, while ``OpenCL`` may show both NVIDIA and AMD GPUs, as well as CPUs.
 
 To work on a specific device, you need to select it.
-By default, the last device found will be automatically selected for convenience at import time.
-You can check which device you are currently working on with the `get_device()` function, and select another one using the `select_device()` function:
+By default, ``pyclesperanto`` automatically selects the first available device at import time, but device order in a system is not guaranteed, and the selected device may not be the one you want to use.
+
+You can check the current selected device with the ``get_device()`` function and switch devices using the ``select_device()`` function:
 
 .. code:: python
 
@@ -38,64 +59,64 @@ You can check which device you are currently working on with the `get_device()` 
     cle.select_device(0)                 # device index
 
 
+Data transfer
+-------------
 
-Memory transfer
----------------
+.. container:: text-justify
 
-GPU devices have their own memory, which is separate from the computer's memory. Therefore, you need to transfer your data to the device memory to process it and back to the computer memory to read the results.
-This is commonly known as `copy from host to device` and `copy from device to host`. In pyclesperanto, we use the functions `push`, `pull`, and `create` to manage memory transfer:
+    GPU devices have separate memory from your computer. You must transfer data to the device to process it and transfer results back to read them.
+    This is known as ``copy from host to device`` and ``copy from device to host``. ``pyclesperanto`` provides three functions to manage memory transfer:
 
-- `push` is used to transfer/copy data from the host to the device.
-- `pull` is used to transfer/copy data from the device to the host.
-- `create` is used to allocate empty space on the device, which will be used, for example, to store a result.
+    - ``push`` is used to transfer/copy data from the host to the device.
+    - ``pull`` is used to transfer/copy data from the device to the host.
+    - ``create`` is used to allocate empty space on the device, which will be used (for example) to store a result.
 
-These copy operations are costly in terms of time as they scale with the data size. Therefore, it is good practice to avoid them as much as possible once you are optimizing your code.
+    These copy operations are costly in terms of time as they scale with the data size. Therefore, it is good practice to avoid them as much as possible when you are optimizing your code.
+
+.. important::
+
+    ``pyclesperanto`` does not support ``64-bit`` data types (``int64``, ``float64``) to ensure compatibility with most GPU devices.
+    If 64-bit data is provided, it is automatically cast to 32-bit, which may result in precision loss.
 
 Create
 ~~~~~~
 
-As there is no data transfer, we only need to specify the size of the image we want to create. The image will be created on the GPU and will be empty.
-The size of the image is specified as a tuple of integers following the numpy convention ``zyx``.
+The ``create`` function allocates empty memory on the GPU without transferring data. You only need to specify the image size as a tuple of integers following the NumPy convention ``(z, y, x)``.
 
 .. code:: python
 
     # Create an empty image on the GPU of size 100x100
     gpu_image = cle.create((100, 100))
 
-By default, this will create a 32-bit float space. You can specify the type of the image by passing a ``dtype`` argument:
+By default, this creates a 32-bit float array. To use a different data type, pass a ``dtype`` argument:
 
 .. code:: python
 
     # Create an empty image on the GPU of size 100x100 with uint8 data type
     gpu_image = cle.create((100, 100), dtype=np.uint8)
 
-It is also possible to use another image as a template to create the new image. This will copy the size and the data type of the template image.
+You can also use an existing image as a template, which copies its size and data type:
 
 .. code:: python
 
     # Create an empty image on the GPU with the same size and data type as the template image
     gpu_image = cle.create_like(template_image)
 
-
 Push
 ~~~~
 
-The ``push`` function will create a memory space on the GPU like ``create`` and then transfer the data array from the host to this new memory space on the device.
-The data array is expected to be a numpy array or share the same interface as a numpy array (e.g., dask array).
+The ``push`` function allocates GPU memory and transfers a data array from your computer to the device.
+It expects a numpy array or compatible array-like object (e.g., dask array).
 
 .. code:: python
 
     arr = np.random.random((100, 100)).astype(np.float32)
+    
     # Push arr to the GPU
     gpu_image = cle.push(arr)
 
-The data pushed will keep the same data type as the array. Hence, if you push a ``uint8`` array, the data will be stored as ``uint8`` on the GPU.
-The array will then use 4 times less memory than if it was stored as ``float32``. This is a good practice to keep in mind when working with GPUs as their memory can be limited.
-
-.. note::
-
-    pyclesperanto does not support `64-bit` data types such as `int64` or `float64`, which are the default data types in Python. This is to ensure full compatibility with most GPU devices.
-    If `64-bit` data are provided, they will be cast down to `32-bit`, with possible precision lost.
+The pushed data retains the array's data type. For example, pushing a ``uint8`` array stores it as ``uint8`` on the GPU, using 4 times less memory than a ``float32`` array.
+Choosing appropriate data types is important for efficient memory usage on GPUs.
 
 Pull
 ~~~~
@@ -112,82 +133,186 @@ The data type of the array will be the same as the data type of the image on the
 Free memory
 ~~~~~~~~~~~
 
-Because memory on the GPU can be limited, it is beneficial to free memory when it is no longer needed. In pyclesperanto, you can free memory similarly to Python using the `del` keyword.
+Because memory on the GPU can be limited, it is beneficial to free memory when it is no longer needed. In `pyclesperanto`, you can free memory similarly to Python using the `del` keyword.
+By default, memory is automatically freed when a GPU array goes out of scope, but you can also explicitly free memory when you know it is no longer needed to avoid memory overflow or to free up memory for other operations in the same scope.
 
 .. code:: python
 
     # Free the memory of the image on the GPU
     del gpu_image
 
+Apply operations
+----------------
 
-Apply operations on images
---------------------------
-
-In pyclesperanto, most functions are filters or mathematical operations on images. We tried to keep the API as simple as possible with a standard convention for all the functions.
+Most ``pyclesperanto`` functions are filters or mathematical operations on images. The API uses a consistent convention across all functions:
 
 .. code:: python
 
     cle.function_name(input, output, arg0, arg1, ...)
 
-The `output` memory is part of the function signature because the GPU cannot allocate memory by itself; you need to specify the output memory space in which it will write the result.
-For example, to apply a filter such as a Gaussian blur, you need to specify the following code:
+The ``output`` parameter is part of the function signature because GPUs cannot automatically allocate memory; you must provide the output location.
+For example, to apply a Gaussian blur:
 
 .. code:: python
 
     # Push an image to the GPU
     gpu_input = cle.push(cpu_image)
+
     # Create an output of the same size as the input
     gpu_output = cle.create(cpu_image.shape)
+
     # Apply a Gaussian blur with sigma_x=2 and sigma_y=2
     cle.gaussian_blur(gpu_input, gpu_output, sigma_x=2, sigma_y=2)
+
     # Pull back the result to the host memory
     result = cle.pull(gpu_output)
 
-Even though it can be a bit tedious, this code provides total control over the data and memory being processed.
-Now, it is also possible to let pyclesperanto manage some of the memory operations, like the ``push`` and ``create`` of the input and output, making your code shorter.
-However, we will rely here on the default behavior of the functions, which might not be the most efficient in terms of memory usage in some cases.
+While explicit and verbose, this code gives you full control over data and memory.
+Alternatively, you can let ``pyclesperanto`` handle most memory operations automatically. This simplifies your code but may not be optimal for all memory usage patterns:
 
 .. code:: python
 
     # Apply a Gaussian blur directly on a numpy array and save the result in a pyclesperanto array
     gpu_output = cle.gaussian_blur(cpu_image, sigma_x=2, sigma_y=2)
+
     # Pull back the result to the host
     result = cle.pull(gpu_output)
 
-Here, the ``cpu_image`` is pushed to the GPU and the output GPU space is created automatically when calling the operation ``gaussian_blur``. The function will return a ``pyclesperanto array``.
-Memory transfers are still applied in the background, but the user does not have to worry about it.
+In this approach, ``cpu_image`` is automatically pushed to the GPU and output memory is allocated when ``gaussian_blur`` is called.
+The function returns a ``pyclesperanto`` array, and memory transfers happen in the background without explicit management.
 
 Pipeline of operations
 ----------------------
 
-Most operations in pyclesperanto are filters. This means that you can chain them together to create a pipeline of operations.
-For example, to apply a Gaussian blur followed by a threshold, you can write the following code:
+Since most ``pyclesperanto`` operations are filters with inputs and outputs, you can chain them together to create processing pipelines.
+For example, to apply a Gaussian blur followed by a threshold:
 
 .. code:: python
 
-    # Apply a Gaussian blur
-    gpu_input = cle.push(cpu_image)
-    gpu_output = cle.create(cpu_image.shape)
-    cle.gaussian_blur(gpu_input, gpu_output, sigma_x=2, sigma_y=2)
-    blurred = cle.pull(gpu_output)
-
-    # Apply a threshold
-    gpu_input = cle.push(blurred)
-    gpu_output = cle.create(blurred.shape)
-    cle.greater_constant(gpu_output, gpu_output, constant=0.5)
-    binarized = cle.pull(gpu_output)
-
-Although this code is correct, it is not optimal due to the ``push`` and ``pull`` in between the two operations. This code is good for prototyping as it allows you to inspect the result of each operation.
-But in the final version of the code, it is better to chain the operations together to avoid the memory transfers (e.g., ``push`` and ``pull``).
-
-.. code:: python
+    # Push an image to the GPU
+    gpu_image = cle.push(cpu_image)
 
     # Apply a Gaussian blur
-    gpu_blurred = cle.gaussian_blur(cpu_image, sigma_x=2, sigma_y=2)
+    gpu_blurred = cle.gaussian_blur(gpu_image, sigma_x=2, sigma_y=2)
+
     # Apply a threshold
     gpu_binarized = cle.greater_constant(gpu_blurred, constant=0.5)
+
     # Read the output on host
     binarized = cle.pull(gpu_binarized)
 
-Here we only use ``push`` at the beginning, inside the ``gaussian_blur`` operation, and ``pull`` at the end of the pipeline when we need to access the data from the CPU.
-The ``create`` operation for output data is done automatically inside each operation.
+We can use the output of one operation as the input of the next, chaining the operations together.
+Data transfer functions like ``push`` and ``pull`` are only necessary at the beginning and end of the pipeline, once we finish working on the GPU. 
+
+.. note::
+
+    Memory transfer is one of the most costly operations in terms of time. It is good practice to minimize them by keeping data on the GPU as long as possible and only transferring it back to the host when necessary.
+
+Element-wise arithmetic optimization
+------------------------------------
+
+``pyclesperanto`` provides arithmetic operations like addition, subtraction, multiplication, and division between arrays in a simple way:
+
+.. code:: python
+
+    # Element-wise arithmetic operations between arrays
+    output = (gpu_arr - gpu_arr.min()) / (gpu_arr.max() - gpu_arr.min())
+
+While convenient, this approach is inefficient as it will trigger multiple GPU kernels, leading to lower performance.
+When applying multiple arithmetic operations in a row, it is better to chain them together to minimize the number of GPU kernels and memory transfers using the ``evaluate()`` function:
+
+.. code:: python
+
+    # Evaluate an element-wise expression on the GPU as a single kernel
+    output = cle.evaluate("(a - a_min) / (a_max - a_min)", {"a": gpu_arr, "a_min": gpu_arr.min(), "a_max": gpu_arr.max()})
+
+In the above example, the expression is evaluated as a single GPU kernel instead of three separate kernels from the first approach.
+In addition to arithmetic operators (``+``, ``-``, ``*``, ``/``), the ``evaluate()`` function also supports mathematical functions like ``sqrt()``, ``exp()``, ``log()``, etc.
+
+.. important::
+
+    The ``evaluate()`` function only supports element-wise operations.
+    ``gpu_arr.min()`` and ``gpu_arr.max()`` are not element-wise operations but reduction operations; this is why they cannot be included in the expression passed to ``evaluate()``.
+    In the example above, ``gpu_arr.min()`` and ``gpu_arr.max()`` are computed separately and passed as arguments to the ``evaluate()`` function.
+
+
+Interoperability
+----------------
+
+Python has a rich ecosystem of libraries for image processing, machine learning, and data analysis, each with its own strengths and weaknesses.
+Making them work together can be challenging. In this regard, most libraries follow NumPy ecosystem standards to ensure compatibility and interoperability.
+This is also the case for ``pyclesperanto``, which aims to provide seamless interoperability with other libraries when possible.
+
+Working with other CPU libraries
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``pyclesperanto`` is designed to work on GPU devices, so interoperability with CPU-only libraries cannot be copy-free.
+A memory transfer from the GPU to the host (or the reverse) is required to exchange data between ``pyclesperanto`` and CPU libraries.
+
+As NumPy is the de-facto standard for array manipulation in Python on CPU, ``pyclesperanto`` provides seamless interoperability with NumPy-like arrays if they provide the ``__array__`` method, which is the case for most array-like objects (e.g., Dask arrays).
+
+.. code:: python
+
+    import torch
+    import numpy as np
+    import pyclesperanto as cle
+
+    tensor = torch.rand((100, 100))
+
+    # From a PyTorch tensor to a pyclesperanto array through numpy
+    gpu_image = cle.asarray(np.asarray(tensor))
+
+    # From a pyclesperanto array to a PyTorch tensor through numpy
+    new_tensor = torch.from_numpy(np.asarray(gpu_image))
+
+A more complete demo on how to work with Dask arrays and ``pyclesperanto`` is available in the :doc:`examples and tutorials <examples>` page.
+
+.. note::
+
+    As this interoperability is not copy-free, it will trigger a memory transfer from the device to the host or the reverse, which can be costly in terms of time.
+
+.. note::
+
+    ``cle.asarray()`` is equivalent to ``cle.push()`` and ``np.asarray()`` on a ``pyclesperanto`` array is equivalent to ``cle.pull()``.
+
+
+Working with other GPU libraries
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Other libraries may also support GPU acceleration, and the question of interoperability between GPU libraries becomes more complex.
+By default, it is always possible to exchange data between GPU libraries through host memory, similarly to CPU libraries as described in the previous section, but this is not optimal as it involves costly memory transfers.
+In specific cases, it is possible to exchange data without memory transfer, which is known as copy-free interoperability.
+
+In ``pyclesperanto``, copy-free interoperability is possible with other libraries supporting the `DLPack protocol <https://dmlc.github.io/dlpack/latest/index.html>`_ and using the same GPU backend language (e.g., ``CUDA``).
+An example of copy-free interoperability between ``pyclesperanto`` and ``CuPy`` is shown below.
+
+.. code:: python
+
+    import cupy as cp
+    import pyclesperanto as cle
+
+    cle.select_backend("CUDA")
+
+    # Convert a Cupy Array to pyclesperanto Array without memory transfer
+    gpu_image_cupy = cp.random.random((100, 100), dtype=cp.float32)
+    gpu_image_cle = cle.from_dlpack(gpu_image_cupy)
+    
+    # Apply image processing operations with pyclesperanto
+    gpu_blurred = cle.gaussian_blur(gpu_image_cle, sigma_x=3, sigma_y=3)
+    gpu_binary = cle.threshold_otsu(gpu_blurred)
+    gpu_labeled = cle.label(gpu_binary)
+    
+    # Convert the result back to a CuPy array without memory transfer
+    gpu_binary_cupy = cp.from_dlpack(gpu_labeled)
+
+.. warning::
+
+    Copy-free conversion between libraries means that data is shared between libraries without memory transfer.
+    This can lead to unexpected side effects (for example, when applying in-place operations or if one holder is deleted but not the other).
+
+
+Tutorials and Examples
+----------------------
+
+Several tutorials and examples are available to help you get started with ``pyclesperanto`` and explore its capabilities.
+For a complete list of examples and tutorials, please visit the :doc:`examples and tutorials <examples>` page.

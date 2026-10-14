@@ -1,10 +1,10 @@
-API Documentation
-=================
+API Reference
+=============
 
 .. toctree::
     :maxdepth: 1
     
-    device
     backend
+    device
     array
     filters

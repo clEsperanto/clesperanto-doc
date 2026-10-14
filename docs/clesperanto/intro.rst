@@ -1,79 +1,20 @@
-What's clEsperanto?
-===================
+Overview
+########
 
-The clesperanto project is a multi-language and multi-platform framework for GPU-accelerated image processing.
-It aims in removing language barriers in the scientific image analysis community by proposing a unified interface API for different programming languages and Frameworks, which rely on a common backend library accelerated by GPU.
+.. container:: text-justify
 
-The project is organised in a set of core-reposiroty API dedicated each dedicated to a programing language, and a set of plugin or assistant targeting the main BioImage Analysis frameworks (Fiji, Napari, etc.).
+    clesperanto is a multi-language and multi-platform framework for GPU-accelerated image processing.
+    It aims to remove language barriers in the scientific image analysis community by providing GPU-accelerated algorithms and a unified API interface across different programming languages and frameworks.
 
-The core-repository APIs are composed of the following repositories:
+    The project is organized into a set of core-repository APIs, each dedicated to a programming language, and a set of plugins or assistants targeting the main BioImage Analysis frameworks (Fiji, Napari, *etc.*).
+    Each API exposes the same set of GPU-accelerated image processing functions and shares the same underlying C++ codebase.
 
-.. .. list-table::
-..    :header-rows: 1
-..    :widths: 50 50 100
+    The project relies on `OpenCL <https://www.khronos.org/opencl/>`_ to ensure compatibility with a wide range of GPU hardware from different vendors (NVIDIA, AMD, Intel, *etc.*) and different device types (dedicated graphics cards, integrated GPUs, and even some CPUs).
+    It also provides additional support for other GPU frameworks such as `CUDA <https://developer.nvidia.com/cuda-zone>`_ and `Metal <https://developer.apple.com/metal/>`_ to allow direct integration with other libraries and maximize adaptability to different environments.
 
-..    * - language
-..      - Repository
-..      - Descriptions
-..    * - |:rocket:|
-..      - `CLIc <https://github.com/clEsperanto/CLIc>`_
-..      - C++ API & project backend
-..    * - |:snake:|
-..      - `pyclesperanto <https://github.com/clEsperanto/pyclesperanto>`_
-..      - Python API
-..    * - |:coffee:|
-..      - `clesperantoJ <https://github.com/clEsperanto/clesperantoj_prototype>`_
-..      - Java API
+The core-repository APIs consist of the following repositories:
 
-- |:rocket:| : `CLIc <https://github.com/clEsperanto/CLIc>`_ C++ API & project backend
-- |:snake:| : `pyclesperanto <https://github.com/clEsperanto/pyclesperanto>`_ Python API
-- |:coffee:| : `clesperantoJ <https://github.com/clEsperanto/clesperantoj_prototype>`_ Java API
+- |:rocket:| `CLIc <https://github.com/clEsperanto/CLIc>`_ C++ API
+- |:coffee:| `clesperantoJ <https://github.com/clEsperanto/clesperantoj_prototype>`_ Java API
+- |:snake:| `pyclesperanto <https://github.com/clEsperanto/pyclesperanto>`_ Python API
 
-and a set of satelite repositories which embeded the core API into the main BioImage Analysis frameworks:
-
-.. .. list-table::
-..    :header-rows: 1
-..    :widths: 50 50 100
-
-..    * - language
-..      - Repository
-..      - Descriptions
-..    * - |:coffee:|
-..      - `CLIJ3 <https://github.com/clEsperanto/clij3>`_
-..      - Fiji plugin
-..    * - |:snake:|
-..      - `napari-assistant <https://github.com/clEsperanto/napari_pyclesperanto_assistant>`_
-..      - Napari plugin
-
-- |:snake:| : `napari-assistant <https://github.com/clEsperanto/napari_pyclesperanto_assistant>`_ Napari plugin
-- |:coffee:| : `CLIJ3 <https://github.com/clEsperanto/clij3>`_ Fiji plugin
-
-How do we work together
------------------------
-
-clEsperanto is developed as a community effort in the open because we believe in the open source community.
-Contributions like feedback, suggestions, code and testing are very welcome.
-This can be done through github issue, pull requests, or via `image.sc forum <https://forum.image.sc/>`_ using the tag `clesperanto`.
-
-The clesperanto project is maintained and lead as a `benevolent dictatorship <http://oss-watch.ac.uk/resources/benevolentdictatorgovernancemodel>`_ by `Stephane Rigaud <https://github.com/strigaud>`_ and `Robert Haase <https://github.com/haesleinhuepf>`_.
-
-Contribution are very welcome, and do not hesitate to get in touch with us so that we can help you get started, we are happy to help!
-
-Acknowledgements
-----------------
-
-We acknowledge support by the Deutsche Forschungsgemeinschaft under Germany’s Excellence Strategy (EXC2068) Cluster of Excellence Physics of Life of TU Dresden and by the Institut Pasteur, Paris. 
-This project has been made possible in part by grant number 2021-237734 (`GPU-accelerating Fiji and friends using distributed CLIJ, NEUBIAS-style, EOSS4 <https://chanzuckerberg.com/eoss/proposals/gpu-accelerating-fiji-and-friends-using-distributed-clij-neubias-style/>`_) from the Chan Zuckerberg Initiative DAF, an advised fund of the Silicon Valley Community Foundation, and by support from the French National Research Agency via the `France BioImaging research infrastructure <https://france-bioimaging.org/>`_ (ANR-24-INBS-0005 FBI BIOGEN).
-
-How to cite us
---------------
-
-If you use clEsperanto (or one of its APIs) in your work, please cite us as follows:
-
-.. code-block:: bibtex
-
-    @software{clEsperanto,
-        author = {Stephane Rigaud and Robert Haase},
-        doi = {10.5281/zenodo.13853800},
-        title = {{clEsperanto}},
-        }

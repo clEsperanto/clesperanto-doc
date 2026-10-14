@@ -7,10 +7,21 @@
 import re
 import sys
 import time
+import warnings
 from pathlib import Path
 
-from sphinx.locale import _
+warnings.filterwarnings(
+    "ignore",
+    message=".*No pyclesperanto backend.*",
+    category=RuntimeWarning,
+)
 
+warnings.filterwarnings(
+    "ignore",
+    message=".*No pyclesperanto backend.*",
+)
+
+from sphinx.locale import _
 
 def parse_version():
 
@@ -29,8 +40,25 @@ def parse_version():
     return common_version
 
 
+def parse_repo_tag(repo):
+    # read the file ".readthedocs.yaml" and find the tag cloned for a given repository
+    with open(".readthedocs.yaml", "r") as f:
+        content = f.read()
+    match = re.search(rf"git clone -b (\S+) .*/{repo}\.git", content)
+    return match.group(1) if match else "main"
+
+
+pyclesperanto_tag = parse_repo_tag("pyclesperanto")
+
+
+def replace_version_placeholders(app, docname, source):
+    # roles and substitutions are not processed in raw html blocks, so we replace placeholders directly
+    source[0] = source[0].replace("{{ pyclesperanto_tag }}", pyclesperanto_tag)
+
+
 def setup(app):
     app.add_css_file('custom.css')
+    app.connect('source-read', replace_version_placeholders)
 
 year = time.localtime().tm_year
 
@@ -47,20 +75,16 @@ release = parse_version()
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
-    'sphinx_rtd_theme',
-    'sphinx.ext.autodoc',
     'sphinx.ext.todo',
-    'sphinx.ext.intersphinx',
+    'sphinxext.opengraph',
     'sphinx.ext.extlinks',
     'sphinx.ext.mathjax',
     'sphinx.ext.viewcode',
     'sphinx.ext.napoleon',
     'sphinx_copybutton',
-    'sphinxext.opengraph',
     'sphinx_inline_tabs',
     'breathe',
     'sphinxemoji.sphinxemoji',
-    'sphinx.ext.graphviz',
 ]
 
 templates_path = ['_templates']
@@ -68,14 +92,38 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', '.pixi', '_submodules']
 
 todo_include_todos = True
 
+# -- External links (version dependent) ----------------------------------------
+# usage: :pycle-demo:`Link title <api/select_devices.ipynb>`
+
+extlinks = {
+    'pycle-demo': (f'https://github.com/clEsperanto/pyclesperanto/blob/{pyclesperanto_tag}/docs/demos/%s', '%s'),
+}
+
 # -- pyclesperanto auto-documentation ----------------------------------------
+from unittest.mock import MagicMock
+
+sys.modules['pyclesperanto._pyclesperanto'] = MagicMock()
+sys.modules['pyclesperanto_opencl'] = MagicMock()
+sys.modules['pyclesperanto_opencl._pyclesperanto'] = MagicMock()
+
 sys.path.insert(0, str(Path('.', '_submodules/pyclesperanto').resolve()))
-autodoc_mock_imports = ["pyclesperanto._pyclesperanto", "toolz", "matplotlib", "numpy"]
+autodoc_mock_imports = [
+    "pyclesperanto._pyclesperanto",
+    "pyclesperanto_opencl._pyclesperanto",
+    "toolz",
+    "matplotlib",
+    "numpy",
+]
 add_module_names = False
 
+# -- CLIc and auto-documentation -------------------------------------------------
 
-# -- CLIc auto-documentation -------------------------------------------------
-breathe_projects = {'CLIc': './_submodules/clic/docs/build/doxygen/xml'}
+sys.path.insert(0, str(Path('.', '_submodules/clesperantoj').resolve()))
+
+breathe_projects = {
+    'CLIc': './_submodules/clic/docs/build/doxygen/xml',
+    'clesperantoj': './_submodules/clesperantoj/docs/xml',
+    }
 breathe_default_project = 'CLIc'
 breathe_domain_by_extension = {'h': 'cpp', 'hpp': 'cpp'}
 cpp_index_common_prefix = [
@@ -90,11 +138,10 @@ cpp_index_common_prefix = [
     'cle::tier8::',
     ]
 
-
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = 'furo' #sphinx_rtd_theme
+html_theme = 'furo' #'sphinx_immaterial' #'furo' #sphinx_rtd_theme
 html_title = "clEsperanto"
 html_favicon = './_static/favicon.ico'
 pygments_style = "sphinx"
@@ -115,10 +162,18 @@ html_theme_options = {
     "footer_icons": [
         {
             "name": "GitHub",
-            "url": "https://github.com/clEsperanto/",
-            "html": "",
-            "class": "fa-brands fa-solid fa-github fa-2x",
+            "url": "https://github.com/pradyunsg/furo",
+            "html": """
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+                </svg>
+            """,
+            "class": "",
         },
     ],
+}
+
+html_search_options = {
+    'type': 'default',
 }
 

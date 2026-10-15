@@ -13,7 +13,12 @@ build:
     pre_install:
       - bash scripts/fetch_sources.sh
       - bash scripts/doxygen_clic.sh
-      - cd _submodules/clesperantoj && mvn -Pdoxygen site
+      # batch mode, sequential downloads and retries: parallel downloads from
+      # Maven Central intermittently fail with TLS "handshake_failure" on RTD
+      - >-
+        cd _submodules/clesperantoj &&
+        MVN="mvn -B -ntp -Pdoxygen -Daether.connector.basic.threads=1 -Daether.connector.http.retryHandler.count=5 -Daether.connector.http.retryHandler.interval=5000" &&
+        ($MVN site || (sleep 30 && $MVN site))
 
 # Build documentation in the "docs/" directory with Sphinx
 sphinx:

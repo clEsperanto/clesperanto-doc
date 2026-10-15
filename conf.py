@@ -4,6 +4,7 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
 
+import os
 import re
 import sys
 import time
@@ -23,32 +24,26 @@ warnings.filterwarnings(
 
 from sphinx.locale import _
 
-def parse_version():
-
-    # read the file ".readthedocs.yaml" and parse to find all version numbers
-    with open(".readthedocs.yaml", "r") as f:
-        content = f.read()
-        versions = re.findall(r"(\d+\.\d+\.\d+)", content)
-
-    # make a commont version number which is the combination of the lowest values in the list
-    if versions:
-        major = min(int(v.split('.')[0]) for v in versions)
-        minor = min(int(v.split('.')[1]) for v in versions if int(v.split('.')[0]) == major)
-        patch = min(int(v.split('.')[2]) for v in versions if int(v.split('.')[0]) == major and int(v.split('.')[1]) == minor)
-        common_version = f"{major}.{minor}.{patch}"
-
-    return common_version
+def get_version():
+    # pinned clEsperanto version documented by this build, None for development branches
+    # (same logic as scripts/fetch_sources.sh)
+    version = os.environ.get("CLESPERANTO_VERSION")
+    if not version and os.environ.get("READTHEDOCS_VERSION_TYPE") == "tag":
+        version = os.environ.get("READTHEDOCS_GIT_IDENTIFIER", "").removeprefix("v")
+    return version or None
 
 
-def parse_repo_tag(repo):
-    # read the file ".readthedocs.yaml" and find the tag cloned for a given repository
-    with open(".readthedocs.yaml", "r") as f:
-        content = f.read()
-    match = re.search(rf"git clone -b (\S+) .*/{repo}\.git", content)
-    return match.group(1) if match else "main"
+def get_source_refs():
+    # refs actually cloned by scripts/fetch_sources.sh (patch versions may differ between repos)
+    refs_file = Path("_submodules/refs.txt")
+    if not refs_file.exists():
+        return {}
+    lines = refs_file.read_text().splitlines()
+    return dict(line.split("=", 1) for line in lines if "=" in line)
 
 
-pyclesperanto_tag = parse_repo_tag("pyclesperanto")
+clesperanto_version = get_version()
+pyclesperanto_tag = get_source_refs().get("pyclesperanto", "main")
 
 
 def replace_version_placeholders(app, docname, source):
@@ -69,7 +64,7 @@ project = 'clEsperanto'
 slug = re.sub(r"\W+", "-", project.lower())
 author = 'clEsperanto authors'
 copyright = f"2020-{year}, clEsperanto authors"
-release = parse_version()
+release = clesperanto_version or "latest"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration

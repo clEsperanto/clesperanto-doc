@@ -19,10 +19,12 @@ Installation options are as follows:
      - Provides all available backends for your system.
 
 For simplicity, we recommend installing pyclesperanto with all available backends using the ``[all]`` option, or specific backends like CUDA using the ``[cuda]`` option. 
+It is strongly advised to install pyclesperanto in a virtual environment.
+We recommend using ``pixi`` for a local, project-specific installation, but you can also use ``venv`` or ``conda`` to create a virtual environment.
 
 .. tab:: Pip
 
-    Install from PyPI with ``pip``:
+    Install from PyPI with ``pip``, this is compatible with ``uv`` :
 
     .. code:: bash
 
@@ -32,15 +34,21 @@ For simplicity, we recommend installing pyclesperanto with all available backend
 
         For ``zsh`` users (such as on macOS), you may need to quote the package name to prevent shell expansion of square brackets: ``pyclesperanto[all]`` should be written as ``'pyclesperanto[all]'`` or ``"pyclesperanto[all]"``.
 
+.. tab:: Pixi (Recommended)
+
+    Install from PyPI with ``pixi``, this is compatible with ``uv`` :
+
+    .. code:: bash
+
+        pixi install --pypi pyclesperanto[all]
+
+    .. note::
+
+        For ``zsh`` users (such as on macOS), you may need to quote the package name to prevent shell expansion of square brackets: ``pyclesperanto[all]`` should be written as ``'pyclesperanto[all]'`` or ``"pyclesperanto[all]"``.
+
 .. tab:: Conda/Mamba (Degraded)
 
-    **WIP**: The conda-forge package is currently in a degraded state and may not work properly. We recommend using pip for installation instead.
-
-
-.. tip::
-
-    It is strongly advised to install pyclesperanto in a virtual environment.
-    We recommend using ``pixi`` for a local, project-specific installation, but you can also use ``venv`` or ``conda`` to create a virtual environment.
+    **WIP**: The conda-forge package is currently in a degraded state and does not work properly. Please use ``pip``, ``uv``, or ``pixi`` for installation instead.    
 
 .. important::
 
@@ -50,7 +58,7 @@ For simplicity, we recommend installing pyclesperanto with all available backend
 From source
 -----------
 
-If you want to try the latest development version of pyclesperanto, if an existing wheel does not cover your platform (e.g., Arch Linux), or if you which to contribute to the project, you can build pyclesperanto from source.
+If you want to try the latest development version of pyclesperanto, build a custom wheel for you specific platform (e.g., Arch Linux), or if you which to contribute to the project, you can build pyclesperanto from source.
 
 First, clone the repository using ``git``:
 
@@ -59,7 +67,7 @@ First, clone the repository using ``git``:
     git clone https://github.com/clEsperanto/pyclesperanto.git
     cd pyclesperanto
 
-We provide a ``pixi.toml`` file to facilitate building and testing with ``pixi``, but you can also build and test with ``pip`` if you prefer.
+We provide a ``pixi.toml``, separated from the ``pyproject.toml`` file to facilitate building and testing with ``pixi``.
 
 .. tab:: Pixi (Recommended)
 

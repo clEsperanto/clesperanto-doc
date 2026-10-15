@@ -6,5 +6,4 @@
 
    install
    usage
-   cmake_gui_guide
    api/index

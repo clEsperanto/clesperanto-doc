@@ -5,10 +5,5 @@ The main data structure in pyclesperanto is the `Array` class which behave simil
 Here is a collection of class functions, operators, and methods to work with `Array` objects. Mainly to create, manipulate, and transfer them, as well
 as to apply arythmetic and logical operations on them.
 
-.. automodule:: pyclesperanto._array
+.. autoclass:: pyclesperanto.Array
     :members:
-    :undoc-members:
-
-.. automodule:: pyclesperanto._operators
-    :members:
-    :undoc-members:

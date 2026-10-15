@@ -3,34 +3,18 @@ Operations
 
 Complete list of all available operations in pyclesperanto.
 
-.. automodule:: pyclesperanto._tier1
-    :members:
-    :undoc-members:
+.. pyclesperanto-api:: pyclesperanto._tier1
 
-.. automodule:: pyclesperanto._tier2
-    :members:
-    :undoc-members:
+.. pyclesperanto-api:: pyclesperanto._tier2
 
-.. automodule:: pyclesperanto._tier3
-    :members:
-    :undoc-members:
+.. pyclesperanto-api:: pyclesperanto._tier3
 
-.. automodule:: pyclesperanto._tier4
-    :members:
-    :undoc-members:
+.. pyclesperanto-api:: pyclesperanto._tier4
 
-.. automodule:: pyclesperanto._tier5
-    :members:
-    :undoc-members:
+.. pyclesperanto-api:: pyclesperanto._tier5
 
-.. automodule:: pyclesperanto._tier6
-    :members:
-    :undoc-members:
+.. pyclesperanto-api:: pyclesperanto._tier6
 
-.. automodule:: pyclesperanto._tier7
-    :members:
-    :undoc-members:
+.. pyclesperanto-api:: pyclesperanto._tier7
 
-.. automodule:: pyclesperanto._tier8
-    :members:
-    :undoc-members:
+.. pyclesperanto-api:: pyclesperanto._tier8

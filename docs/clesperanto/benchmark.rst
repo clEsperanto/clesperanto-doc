@@ -5,7 +5,7 @@ Benchmarking was done with the Python version of clesperanto, as it is the easie
 We compared the performance of the differents backends ``CUDA``, ``OpenCL``, and ``Metal`` to the performance of the ``NumPy`` (CPU) and ``CuPy`` (GPU) libraries.
 The goal is not to compete, but to observe and evaluate the performance of clesperanto against state-of-the-art libraries and to provide a reference for users choosing the best backend for their needs.
 
-The benchmark was designed and adapted from the benchmarking approach used by ``CuPy`` (https://cupy.dev/) and is available `here <https://github.com/clesperanto/clesperanto/tree/main/benchmarks>`__.
+The benchmark was designed and adapted from the benchmarking approach used by ``CuPy`` (https://cupy.dev/) and is available `here <https://github.com/StRigaud/benchmark_GPU_python>`__.
 It was run on a small (128MB) and a large (2GB) 3D array, with a warmup and repeated runs to compute an average time.
 
 .. container:: figure-centered

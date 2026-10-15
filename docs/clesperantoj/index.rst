@@ -1,5 +1,5 @@
-☕ clesperantoJ 
-##############
+☕ clesperantoJ
+################
     
 .. toctree::
    :maxdepth: 2

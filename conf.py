@@ -4,12 +4,18 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
 
+import importlib
+import inspect
 import os
 import re
 import sys
 import time
 import warnings
 from pathlib import Path
+
+import sphinx.domains.cpp
+from sphinx.domains import ObjType
+from sphinx.util.docutils import SphinxDirective
 
 warnings.filterwarnings(
     "ignore",
@@ -54,6 +60,9 @@ def replace_version_placeholders(app, docname, source):
 def setup(app):
     app.add_css_file('custom.css')
     app.connect('source-read', replace_version_placeholders)
+    app.connect('builder-inited', prepare_pyclesperanto)
+    app.add_directive('pyclesperanto-api', PyclesperantoAPI)
+    app.add_domain(CPPDomain, override=True)
 
 year = time.localtime().tm_year
 
@@ -70,6 +79,7 @@ release = clesperanto_version or "latest"
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
+    'sphinx.ext.autodoc',
     'sphinx.ext.todo',
     'sphinxext.opengraph',
     'sphinx.ext.extlinks',
@@ -105,11 +115,104 @@ sys.path.insert(0, str(Path('.', '_submodules/pyclesperanto').resolve()))
 autodoc_mock_imports = [
     "pyclesperanto._pyclesperanto",
     "pyclesperanto_opencl._pyclesperanto",
-    "toolz",
     "matplotlib",
     "numpy",
 ]
 add_module_names = False
+
+
+def prepare_pyclesperanto(app):
+    # import pyclesperanto once with the mocked dependencies, and give it a documentable Array:
+    # cle.Array is a proxy whose methods are patched at runtime onto the backend array class,
+    # so we patch them onto a plain class instead
+    from sphinx.ext.autodoc.mock import mock
+
+    with mock(autodoc_mock_imports):
+        import pyclesperanto
+        from pyclesperanto import _array
+
+        class Array:
+            __doc__ = _array.Array.__doc__
+            __module__ = "pyclesperanto"
+
+            def reshape(self, *shape):  # replaced by _patch_array_class
+                pass
+
+        get_array_class = _array._get_array_class
+        _array._get_array_class = lambda: Array
+        try:
+            _array._patch_array_class()
+        finally:
+            _array._get_array_class = get_array_class
+        pyclesperanto.Array = Array
+
+
+def defined_in(obj, module_name):
+    # follow the functools.wraps chain (plugin_function, deprecated) to the original definition
+    try:
+        return inspect.unwrap(obj).__module__ == module_name
+    except (ValueError, AttributeError):
+        return False
+
+
+class PyclesperantoAPI(SphinxDirective):
+    """Document the objects of a private pyclesperanto module under their public name.
+
+    ``.. pyclesperanto-api:: pyclesperanto._tier1`` documents ``pyclesperanto.absolute``
+    instead of ``pyclesperanto._tier1.absolute``, so that the search and cross-references
+    use the names users actually call (``cle.absolute``).
+    """
+
+    required_arguments = 1
+
+    def run(self):
+        import pyclesperanto
+
+        module = importlib.import_module(self.arguments[0])
+        lines = []
+        for name, obj in sorted(vars(module).items()):
+            if name.startswith("_") or getattr(pyclesperanto, name, None) is not obj:
+                continue
+            if not defined_in(obj, module.__name__):
+                continue
+            if inspect.isclass(obj):
+                lines += [f".. autoclass:: pyclesperanto.{name}", "    :members:", ""]
+            else:
+                lines += [f".. autofunction:: pyclesperanto.{name}", ""]
+        return self.parse_text_to_nodes("\n".join(lines))
+
+
+JAVA_OBJECT_TYPES = {
+    "class": ObjType("class", "class"),
+    "function": ObjType("method", "func"),
+    "enum": ObjType("enum", "enum"),
+    "enumerator": ObjType("enum constant", "enumerator"),
+}
+
+
+class CPPDomain(sphinx.domains.cpp.CPPDomain):
+    # Adjust how C++ objects (CLIc and clesperantoj, both parsed by breathe) appear in the search:
+    # - function and template parameters are left out: they are still rendered, but otherwise every
+    #   "device", "src" or "sigma_x" of every C++ and Java function is a search hit
+    # - clesperantoj objects are listed as Java ("Java method", net.clesperanto.kernels.Tier1.gaussianBlur)
+    #   instead of C++ ("C++ function", net::clesperanto::kernels::Tier1::gaussianBlur)
+    object_types = sphinx.domains.cpp.CPPDomain.object_types | {
+        f"java_{name}": objtype for name, objtype in JAVA_OBJECT_TYPES.items()
+    }
+
+    def get_type_name(self, type, primary=False):
+        if type in JAVA_OBJECT_TYPES.values():
+            return type.lname if primary else f"Java {type.lname}"
+        return super().get_type_name(type, primary)
+
+    def get_objects(self):
+        for name, dispname, objtype, docname, anchor, priority in super().get_objects():
+            if objtype in ("functionParam", "templateParam"):
+                continue
+            if docname.startswith("docs/clesperantoj/") and objtype in JAVA_OBJECT_TYPES:
+                objtype = f"java_{objtype}"
+                dispname = dispname.replace("::", ".")
+            yield name, dispname, objtype, docname, anchor, priority
 
 # -- CLIc and auto-documentation -------------------------------------------------
 

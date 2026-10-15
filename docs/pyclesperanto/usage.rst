@@ -244,7 +244,7 @@ Making them work together can be challenging. In this regard, most libraries fol
 This is also the case for ``pyclesperanto``, which aims to provide seamless interoperability with other libraries when possible.
 
 Working with other CPU libraries
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ``pyclesperanto`` is designed to work on GPU devices, so interoperability with CPU-only libraries cannot be copy-free.
 A memory transfer from the GPU to the host (or the reverse) is required to exchange data between ``pyclesperanto`` and CPU libraries.
@@ -277,7 +277,7 @@ A more complete demo on how to work with Dask arrays and ``pyclesperanto`` is av
 
 
 Working with other GPU libraries
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Other libraries may also support GPU acceleration, and the question of interoperability between GPU libraries becomes more complex.
 By default, it is always possible to exchange data between GPU libraries through host memory, similarly to CPU libraries as described in the previous section, but this is not optimal as it involves costly memory transfers.

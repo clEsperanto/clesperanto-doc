@@ -32,6 +32,7 @@ The GPU-accelerated Image Processing library for **all**!
 
    docs/clesperanto/benchmark
    docs/pyclesperanto/migration
+   docs/pyclesperanto/hpc
 
 
 .. todolist::

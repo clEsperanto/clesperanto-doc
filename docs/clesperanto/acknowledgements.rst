@@ -9,9 +9,9 @@ Acknowledgements
 .. raw:: html
 
     <div style="display: flex; justify-content: space-around; align-items: center; margin-top: 40px; background-color: #f0f0f0; padding: 30px; border-radius: 8px;">
-        <img src="https://www.pasteur.fr/sites/default/files/logo_ppal_bas.png" style="width: 150px; height: auto; margin: 0 20px;">
-        <img src="https://tu-dresden.de/tu-dresden/exzellenz/ressourcen/bilder/exc/PoL_MZ_RGB.png/@@images/7087c424-1c04-4f9b-9f37-afc1d06cf694.png" style="width: 150px; height: auto; margin: 0 20px;">
-        <img src="https://chanzuckerberg.com/wp-content/uploads/2018/12/czi-social-sharing-logo-1200-630-2.png" style="width: 150px; height: auto; margin: 0 20px;">
-        <img src="https://france-bioimaging.org/wp-content/themes/blank/assets/images/France-Bioimaging-web.png" style="width: 150px; height: auto; margin: 0 20px;">
+        <img src="../../_static/logos/pasteur.png" alt="Institut Pasteur" style="width: 150px; height: auto; margin: 0 20px;">
+        <img src="../../_static/logos/pol.png" alt="Physics of Life, TU Dresden" style="width: 150px; height: auto; margin: 0 20px;">
+        <img src="../../_static/logos/czi.png" alt="Chan Zuckerberg Initiative" style="width: 150px; height: auto; margin: 0 20px;">
+        <img src="../../_static/logos/fbi.png" alt="France-BioImaging" style="width: 150px; height: auto; margin: 0 20px;">
     </div>
 
